@@ -1,6 +1,6 @@
 {
   "name": "voxelcloud-ui",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
   "main": "dist/vc-ui.cjs.js",
   "module": "dist/vc-ui.esm.js",
