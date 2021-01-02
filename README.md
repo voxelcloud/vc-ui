@@ -2,7 +2,7 @@
 
 ### Document
 
-[docs](https://harrychen0506.github.io/vc-ui/)
+[document](https://harrychen0506.github.io/vc-ui/)
 
 ### Usage
 
@@ -13,7 +13,7 @@ cd /
 yarn add voxelcloud-ui
 ```
 
-* Import
+* Usage
 
 ``` javascript
 import { Button } from 'voxelcloud-ui';
