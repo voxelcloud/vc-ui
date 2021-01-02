@@ -4,6 +4,25 @@
 
 [docs](https://harrychen0506.github.io/vc-ui/)
 
+### Usage
+
+* Install
+
+``` bash
+cd /
+yarn add voxelcloud-ui
+```
+
+* Import
+
+``` javascript
+import { Button } from 'voxelcloud-ui';
+
+<Button color="primary" size="large">
+    大号主按钮
+</Button>
+```
+
 ### Development
 
 * Dev
@@ -14,14 +33,9 @@ yarn install
 npm run dev
 ```
 
-* Build
+### Release
 
-``` bash
-cd /
-npm run build
-```
-
-* Release
+* Create Standard Version
 
 ``` bash
 cd /
@@ -34,4 +48,17 @@ npm run release -- --release-as major // 主版本变更
 npm run release -- --release-as minor // 次级版本变更
 npm run release -- --release-as patch // 补丁版本变更
 npm run release -- --release-as 1.1.0 // 变更指定版本
+```
+
+* Build
+
+``` bash
+npm run build
+```
+
+* Npm Publish
+
+``` bash
+git push --follow-tags origin [branchName] // branchName 分支名
+npm publish 
 ```
