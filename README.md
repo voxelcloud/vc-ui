@@ -14,12 +14,7 @@ yarn install
 npm run dev
 ```
 
-* Build
-
-``` bash
-cd /
-npm run build
-```
+### Release
 
 * Release
 
@@ -34,4 +29,17 @@ npm run release -- --release-as major // 主版本变更
 npm run release -- --release-as minor // 次级版本变更
 npm run release -- --release-as patch // 补丁版本变更
 npm run release -- --release-as 1.1.0 // 变更指定版本
+```
+
+* Build
+
+``` bash
+npm run build
+```
+
+* Npm Publish
+
+``` bash
+git push --follow-tags origin [branchName] // branchName 分支名
+npm publish 
 ```
