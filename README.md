@@ -4,6 +4,25 @@
 
 [docs](https://harrychen0506.github.io/vc-ui/)
 
+### Usage
+
+* Install
+
+``` bash
+cd /
+yarn add voxelcloud-ui
+```
+
+* Import
+
+``` javascript
+import { Button } from 'voxelcloud-ui';
+
+<Button color="primary" size="large">
+    大号主按钮
+</Button>
+```
+
 ### Development
 
 * Dev
@@ -16,7 +35,7 @@ npm run dev
 
 ### Release
 
-* Release
+* Create Standard Version
 
 ``` bash
 cd /
