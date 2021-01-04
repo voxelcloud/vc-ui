@@ -12,6 +12,7 @@
   ],
   "scripts": {
     "commit": "git cz",
+    "start": "npm run dev",
     "dev": "npm run docz:dev",
     "build": "npm run clean && cross-env NODE_ENV=production rollup -c rollup.config.js",
     "build:gh-pages": "npm run clean:gh-pages && node scripts/build_gh_pages.js",
@@ -19,7 +20,7 @@
     "clean": "node scripts/clean_dist.js",
     "clean:docz": "node scripts/clean_docz.js",
     "clean:gh-pages": "node scripts/clean_gh_pages.js",
-    "docz:dev": "npm run clean:docz && docz dev",
+    "docz:dev": "npm run clean:docz && docz dev & wait-on http://localhost:3002 && open http://localhost:3002",
     "docz:build": "npm run clean:docz && docz build",
     "docz:serve": "docz build && docz serve",
     "release": "standard-version",
@@ -56,6 +57,7 @@
     "eslint-plugin-react": "^7.22.0",
     "fs-extra": "^9.0.1",
     "log-symbols": "^4.0.0",
+    "open": "^7.3.0",
     "ora": "^5.2.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
@@ -73,6 +75,7 @@
     "shelljs": "^0.8.4",
     "standard-version": "^9.1.0",
     "uglify-es": "^3.3.9",
+    "wait-on": "^5.2.1",
     "yargs": "^16.2.0"
   },
   "peerDependencies": {
