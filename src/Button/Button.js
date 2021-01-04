@@ -10,6 +10,9 @@ const useButtonStyles = makeStyles({
     minWidth: '88px',
     padding: '0 16px',
     borderRadius: '4px',
+    '&:hover': {
+      backgroundColor: theme => theme.palette.action.hover,
+    }
   },
   contained: {
     color: theme => theme.palette.primary.contrastText,
@@ -21,7 +24,7 @@ const useButtonStyles = makeStyles({
   highLight: {
     color: theme => theme.palette.text.secondary,
     '&:hover': {
-      background: 'unset',
+      background: 'unset !important',
       color: theme => theme.palette.primary.main,
     },
     '&.MuiButton-contained': {
