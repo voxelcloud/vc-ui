@@ -8,7 +8,7 @@ import replace from 'rollup-plugin-replace'
 export default {
   input: 'src/index.js',
   // external: ['react', 'react-dom', 'react-is'],
-  external: id => id.includes('@material-ui') || ['react', 'react-dom', 'react-is'].includes(id) ,
+  external: id => id.includes('@material-ui') || ['react', 'react-dom', 'react-is', 'clsx'].includes(id),
   plugins: [
     alias({
       resolve: ['.js']
