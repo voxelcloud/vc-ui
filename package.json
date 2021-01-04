@@ -12,6 +12,7 @@
   ],
   "scripts": {
     "commit": "git cz",
+    "start": "npm run dev",
     "dev": "npm run docz:dev",
     "build": "npm run clean && cross-env NODE_ENV=production rollup -c rollup.config.js",
     "build:gh-pages": "npm run clean:gh-pages && node scripts/build_gh_pages.js",

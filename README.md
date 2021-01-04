@@ -9,7 +9,6 @@
 * Install
 
 ``` bash
-cd /
 yarn add voxelcloud-ui
 ```
 
@@ -28,7 +27,6 @@ import { Button } from 'voxelcloud-ui';
 * Dev
 
 ``` bash
-cd /
 yarn install
 npm run dev
 ```
