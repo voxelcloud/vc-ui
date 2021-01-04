@@ -36,7 +36,7 @@ yarn install
 npm run dev
 ```
 
-* Code commit
+* Code Commit
 
 ``` bash
 npm run commit
@@ -47,7 +47,6 @@ npm run commit
 1.  Create Standard Version
 
 ``` bash
-cd /
 # 注意以下命令需选择：
 npm run release # 默认补丁版本 增加0.0.1
 npm run release -- --first-release # 首次发布
