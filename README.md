@@ -1,4 +1,4 @@
-# vc-ui
+vc-ui
 ========
 
 [![NPM package][npm]][npm-url]
@@ -72,6 +72,7 @@ git push --follow-tags origin [branchName] # branchName 分支名
 npm publish 
 ```
 
+[npm]: https://img.shields.io/npm/v/voxelcloud-ui.svg
 [npm-url]: https://www.npmjs.com/package/voxelcloud-ui
 [npm-downloads-image]: http://img.shields.io/npm/dm/voxelcloud-ui.svg?style=flat
 [build-status]: https://www.travis-ci.org/HarryChen0506/vc-ui.svg?branch=develop
