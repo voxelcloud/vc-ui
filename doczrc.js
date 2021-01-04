@@ -15,7 +15,7 @@ export default {
   /**
    * 排除哪些文件
    */
-  ignore: ['README.md'],
+  ignore: ['README.md', 'CHANGELOG.md'],
   /**
    * docz build 之后生成的静态文件到哪个目录
    */
