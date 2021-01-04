@@ -1,9 +1,16 @@
 import React from 'react'
 import MaSelect from '@material-ui/core/Select'
+import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import t from 'prop-types'
 
 const useStyles = makeStyles({
+  vcRoot: {
+    display: 'inline-flex',
+    '& .MuiInput-underline:hover:not(.Mui-disabled):before': {
+      borderBottom: '2px solid rgba(0, 0, 0, 0.54)'
+    }
+  },
   select: {
     '&:focus': {
       backgroundColor: 'transparent'
@@ -12,16 +19,21 @@ const useStyles = makeStyles({
 })
 
 const Select = React.forwardRef((props, ref) => {
-  const { classes, ...restProps } = props
+  const { classes = {}, ...restProps } = props
   const customClasses = useStyles()
-  return <MaSelect
-    ref={ref}
-    classes={{
-      select: customClasses.select,
-      ...classes
-    }}
-    {...restProps}
-  />
+  const { vcRoot, ...restClasses } = classes
+  return (
+    <div className={clsx(customClasses.vcRoot, vcRoot)}>
+      <MaSelect
+        ref={ref}
+        classes={{
+          select: customClasses.select,
+          ...restClasses
+        }}
+        {...restProps}
+      />
+    </div>
+  )
 })
 
 Select.propTypes = {
