@@ -40,3 +40,6 @@ coverage/*
 gh_pages/
 gh_pages/*
 
+# idea
+.idea/
+
