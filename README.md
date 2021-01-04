@@ -1,4 +1,9 @@
-# vc-ui
+vc-ui
+========
+
+[![NPM package][npm]][npm-url]
+[![NPM downloads][npm-downloads-image]][npm-url]
+[![Build Status][build-status]][build-status-url]
 
 ### Document
 
@@ -31,7 +36,7 @@ yarn install
 npm run dev
 ```
 
-* Code commit
+* Code Commit
 
 ``` bash
 npm run commit
@@ -42,7 +47,6 @@ npm run commit
 1.  Create Standard Version
 
 ``` bash
-cd /
 # 注意以下命令需选择：
 npm run release # 默认补丁版本 增加0.0.1
 npm run release -- --first-release # 首次发布
@@ -66,3 +70,9 @@ npm run build
 git push --follow-tags origin [branchName] # branchName 分支名
 npm publish 
 ```
+
+[npm]: https://img.shields.io/npm/v/voxelcloud-ui.svg
+[npm-url]: https://www.npmjs.com/package/voxelcloud-ui
+[npm-downloads-image]: http://img.shields.io/npm/dm/voxelcloud-ui.svg?style=flat
+[build-status]: https://www.travis-ci.org/HarryChen0506/vc-ui.svg?branch=develop
+[build-status-url]: https://www.travis-ci.org/HarryChen0506/vc-ui
