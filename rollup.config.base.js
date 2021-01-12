@@ -23,7 +23,11 @@ export default {
       include: 'node_modules/**',
     }),
     eslint({
-      include: ['src/**/*.js']
+      include: ['src/**/*.js'],
+      exclude: ['node_modules/**'],
+      throwOnError: true,
+      throwOnWarning: true,
+      fix: true,
     }),
     babel({
       runtimeHelpers: true,
