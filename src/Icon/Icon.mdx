@@ -1,0 +1,67 @@
+--- 
+name: Icon
+route: /vc-ui/
+--- 
+
+import { Playground, Props } from 'docz'
+import Icon  from './'
+import '../assets/fonts/iconfont.css'
+import iconMap from './iconMap'
+
+# Icon
+
+## Props
+
+<Props of={Icon} />
+
+## iconMap config
+
+```
+const prefix = 'iconfont';
+const createTheme = () => createMuiTheme({
+  iconMap: {
+    arrowBack: `${prefix} iconarrow_back-24px3`,
+    arrowDown: `${prefix} iconic_arrow_drop_down_`,
+    swap: `${prefix} iconswap-24px`,
+  },
+});
+
+function Theme(props) {
+  const { children } = props;
+  const theme = createTheme();
+  return (
+    <ThemeProvider theme={theme}>
+      {children}
+    </ThemeProvider>
+  );
+}
+```
+
+## Basic usage 
+
+<Playground>
+  {
+    () => (
+      <div>
+        <Icon className="iconfont iconic_search_px" />
+        <br/>
+       {
+         Object.keys(iconMap).map((icon, i) => {
+           if((i + 1) % 6 === 0) {
+             return (
+               <>
+                {icon}: <Icon key={icon} name={icon} />
+                <br/>
+               </>
+             )
+           }
+           return (
+             <span style={{ display: 'inline-block', width: '200px' }}>{icon}: <Icon key={icon} name={icon} /></span>
+           )
+         })
+       }
+      </div>
+    )
+  }
+</Playground>
+
