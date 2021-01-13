@@ -2,6 +2,7 @@ import React, { memo } from 'react'
 import t from 'prop-types'
 import MaButton from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
+import Icon from '../Icon'
 import { useTheme, makeStyles } from '@material-ui/core/styles'
 
 const useButtonStyles = makeStyles({
@@ -72,7 +73,8 @@ const useIconButtonStyles = makeStyles({
 })
 
 const Button = React.forwardRef(function Button({
-  type, children, className, emphasis, variant, icon, startIcon, endIcon, ...otherProps
+  type, children, className, emphasis, variant, iconName, iconClassName,
+  startIcon, endIcon, ...otherProps
 }, ref) {
 
   const theme = useTheme()
@@ -88,7 +90,7 @@ const Button = React.forwardRef(function Button({
         ref={ref}
         {...otherProps}
       >
-        <i className={`icon iconfont ${icon}`} />
+        <Icon name={iconName} className={iconClassName} />
       </IconButton>
     )
   }
@@ -118,7 +120,8 @@ Button.propTypes = {
   className: t.string,
   emphasis: t.bool,
   variant: t.oneOf(['contained', 'outlined', 'text']),
-  icon: t.string,
+  iconName: t.string,
+  iconClassName: t.string,
   startIcon: t.string,
   endIcon: t.string,
 }

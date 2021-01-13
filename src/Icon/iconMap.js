@@ -1,0 +1,33 @@
+const prefix = 'iconfont'
+const iconMap = {
+  arrowBack: `${prefix} iconarrow_back-24px3`,
+  arrowDown: `${prefix} iconic_arrow_drop_down_`,
+  swap: `${prefix} iconswap-24px`,
+  visibility: `${prefix} iconic_visibility_px`,
+  visibilityOff: `${prefix} iconic_visibility_off_`,
+  copy: `${prefix} iconfile_copy-24px`,
+  delete: `${prefix} iconic_delete_px`,
+  add: `${prefix} iconic_add_px`,
+  edit: `${prefix} iconic_mode_edit_px`,
+  clear: `${prefix} iconclear-24px3`,
+  fold: `${prefix} iconic_unfold_less_px`,
+  unfold: `${prefix} iconic_unfold_more_px`,
+  checkboxOutline: `${prefix} iconic_check_box_outline`,
+  checkbox: `${prefix} iconic_check_box_px`,
+  phone: `${prefix} iconic_phone_px`,
+  search: `${prefix} iconic_search_px`,
+  circleAdd: `${prefix} iconic_add_circle_outlin`,
+  circleCancel: `${prefix} iconic_cancel_px`,
+  more: `${prefix} iconic_more_vert_px`,
+  refresh: `${prefix} iconic_refresh_px`,
+  sync: `${prefix} iconic_sync_px`,
+  notifications: `${prefix} iconic_notifications_p`,
+  person: `${prefix} iconic_person_px`,
+  personOutline: `${prefix} iconic_person_outline_`,
+  home: `${prefix} iconic_home_px`,
+  lock: `${prefix} iconlock-24px`,
+  checkCircle: `${prefix} iconic_check_circle_px`,
+  place: `${prefix} iconic_room_px`,
+}
+
+export default iconMap

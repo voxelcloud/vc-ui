@@ -5,6 +5,7 @@ route: /vc-ui/
 
 import { Playground, Props } from 'docz'
 import Button  from './';
+import Icon  from '../Icon';
 import '../assets/fonts/iconfont.css';
 
 # Button 
@@ -12,6 +13,10 @@ import '../assets/fonts/iconfont.css';
 ## Props
 
 <Props of={Button} />
+
+## Icon Props
+
+<Props of={Icon} />
 
 ## More Props
 
@@ -35,8 +40,9 @@ import '../assets/fonts/iconfont.css';
       填充型按钮
   </Button>
   <br/><br/>
-  <Button type="icon" icon="icon-ic_refresh_px" emphasis />
-  <Button type="icon" icon="icon-ic_refresh_px" />
-  <Button type="icon" icon="icon-ic_refresh_px" variant="contained" emphasis />
+  <Button type="icon" iconName="refresh" emphasis />
+  <Button type="icon" iconName="refresh" />
+  <Button type="icon" iconName="refresh" variant="contained" emphasis />
+  <Button type="icon" iconClassName="iconfont iconic_refresh_px" emphasis />
 </Playground>
 
