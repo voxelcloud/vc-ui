@@ -3,6 +3,7 @@ import t from 'prop-types'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import MaCheckbox from '@material-ui/core/Checkbox'
 import { makeStyles } from '@material-ui/core/styles'
+import clsx from "clsx";
 
 const useControlLabelStyles = makeStyles({
   root: {
@@ -24,22 +25,24 @@ const useCheckboxStyles = makeStyles({
   },
 })
 
-const Checkbox = React.forwardRef(function Checkbox({ label, checked, ...otherProps
+const Checkbox = React.forwardRef(function Checkbox({ labelClasses, classes, label, checked, ...otherProps
 }, ref) {
-  const labelClasses = useControlLabelStyles()
-  const checkboxClasses = useCheckboxStyles()
+  const customLabelClasses = useControlLabelStyles()
+  const customCheckboxClasses = useCheckboxStyles()
   return (
     <FormControlLabel
       classes={{
-        root: labelClasses.root,
-        label: labelClasses.label,
+        root: customLabelClasses.root,
+        label: customLabelClasses.label,
+        ...labelClasses
       }}
-      className={checked ? 'MuiFormControlLabel-checked' : ''}
+      className={clsx(checked && 'MuiFormControlLabel-checked')}
       ref={ref}
       control={
         <MaCheckbox
           classes={{
-            root: checkboxClasses.root,
+            root: customCheckboxClasses.root,
+            ...classes,
           }}
           checked={checked}
           {...otherProps}
@@ -51,6 +54,8 @@ const Checkbox = React.forwardRef(function Checkbox({ label, checked, ...otherPr
 })
 
 Checkbox.propTypes = {
+  labelClasses: t.object,
+  classes: t.object,
   label: t.string,
   checked: t.bool,
 }

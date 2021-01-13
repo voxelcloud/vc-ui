@@ -1,20 +1,18 @@
 import React from 'react'
 import t from 'prop-types'
-import { makeStyles, useTheme } from '@material-ui/core/styles'
+import MaIcon from '@material-ui/core/Icon'
+import { useTheme } from '@material-ui/core/styles'
 import iconMap from './iconMap'
+import clsx from 'clsx'
 
-const useIconStyles = makeStyles({
-  iconRoot: {
-    fontSize: '24px',
-  },
-})
-
-const Icon = React.forwardRef(({ name, className }, ref) => {
-  const iconClasses = useIconStyles()
+const Icon = React.forwardRef(({ name, className, ...otherProps }, ref) => {
   const theme = useTheme()
   const iconMapTotal = { ...iconMap, ...theme.iconMap }
-  const iconClass = iconMapTotal[name] ? `${iconMapTotal[name]} ${className}` : className
-  return <i ref={ref} className={`${iconClasses.iconRoot} ${iconClass}`} />
+  return <MaIcon
+    ref={ref}
+    className={clsx(name && iconMapTotal[name], className)}
+    {...otherProps}
+  />
 })
 
 Icon.propTypes = {

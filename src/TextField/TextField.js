@@ -1,9 +1,10 @@
 import React, { memo, useRef, useState } from 'react'
+import { useTheme, makeStyles } from '@material-ui/core/styles'
 import t from 'prop-types'
 import MaTextField from '@material-ui/core/TextField'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import IconButton from '@material-ui/core/IconButton'
-import { useTheme, makeStyles } from '@material-ui/core/styles'
+import Icon from '../Icon'
 
 export const TEXT_FIELD_TYPE = {
   TEXT: 'text',
@@ -60,11 +61,11 @@ const useTextFieldStyles = makeStyles({
 })
 
 const TextField = React.forwardRef(function TextField({
-  type, children, readonly, disabled, multiline, value, onChange, ...otherProps
+  type, classes, children, readonly, disabled, multiline, value, onChange, ...otherProps
 }, ref) {
 
   const theme = useTheme()
-  const classes = useTextFieldStyles(theme)
+  const customClasses = useTextFieldStyles(theme)
 
   const [isShowPwd, setIsShowPwd] = useState(false)
   const inputRef = useRef()
@@ -93,12 +94,9 @@ const TextField = React.forwardRef(function TextField({
   }
   if ([TEXT_FIELD_TYPE.TEXT, TEXT_FIELD_TYPE.NUMBER].includes(type) && !disabled && !readonly) {
     InputProps.endAdornment = (
-      <InputAdornment className={`input-clear ${multiline === true && value ? 'show' : ''}`} position="end">
-        <IconButton
-          tabIndex="-1"
-          onClick={onClear}
-        >
-          <i className="iconfont icon-ic_close_px" />
+      <InputAdornment className="input-clear" position="end">
+        <IconButton tabIndex="-1" onClick={onClear}>
+          <Icon name="clear" />
         </IconButton>
       </InputAdornment>
     )
@@ -112,7 +110,7 @@ const TextField = React.forwardRef(function TextField({
           tabIndex="-1"
           onClick={changePwdVisible}
         >
-          {isShowPwd ? <i className="iconfont icon-ic_visibility_px" /> : <i className="iconfont icon-ic_visibility_off_" />}
+          <Icon name={isShowPwd ? 'visibility' : 'visibilityOff'} />
         </IconButton>
       </InputAdornment>
     )
@@ -121,7 +119,8 @@ const TextField = React.forwardRef(function TextField({
   return (
     <MaTextField
       classes={{
-        root: classes.root,
+        root: customClasses.root,
+        ...classes,
       }}
       type={inputType}
       ref={ref}
@@ -141,6 +140,7 @@ const TextField = React.forwardRef(function TextField({
 
 TextField.propTypes = {
   type: t.oneOf(['text', 'number', 'select', 'password']),
+  classes: t.object,
   children: t.node,
   readonly: t.bool,
   disabled: t.bool,

@@ -14,6 +14,10 @@ import iconMap from './iconMap'
 
 <Props of={Icon} />
 
+## More Props
+
+[see details](https://material-ui.com/zh/api/icon/)
+
 ## iconMap config
 
 ```
@@ -44,6 +48,7 @@ function Theme(props) {
     () => (
       <div>
         <Icon className="iconfont iconic_search_px" />
+        <Icon color="primary" className="iconfont iconic_search_px" />
         <br/>
        {
          Object.keys(iconMap).map((icon, i) => {
