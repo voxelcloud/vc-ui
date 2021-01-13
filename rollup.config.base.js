@@ -14,7 +14,8 @@ export default {
       resolve: ['.js']
     }),
     replace({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
+      '__NODE_ENV__': JSON.stringify(process.env.NODE_ENV || 'development'),
+      '__DEV__': process.env.NODE_ENV === 'development',
     }),
     resolve(),
     commonjs({
@@ -23,7 +24,11 @@ export default {
       include: 'node_modules/**',
     }),
     eslint({
-      include: ['src/**/*.js']
+      include: ['src/**/*.js'],
+      exclude: ['node_modules/**'],
+      throwOnError: false,
+      throwOnWarning: true,
+      fix: true,
     }),
     babel({
       runtimeHelpers: true,
