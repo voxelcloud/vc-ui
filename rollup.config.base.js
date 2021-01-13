@@ -14,7 +14,8 @@ export default {
       resolve: ['.js']
     }),
     replace({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
+      '__NODE_ENV__': JSON.stringify(process.env.NODE_ENV || 'development'),
+      '__DEV__': process.env.NODE_ENV === 'development',
     }),
     resolve(),
     commonjs({
@@ -25,7 +26,7 @@ export default {
     eslint({
       include: ['src/**/*.js'],
       exclude: ['node_modules/**'],
-      throwOnError: true,
+      throwOnError: false,
       throwOnWarning: true,
       fix: true,
     }),
