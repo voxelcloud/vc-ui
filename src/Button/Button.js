@@ -4,6 +4,7 @@ import MaButton from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
 import Icon from '../Icon'
 import { useTheme, makeStyles } from '@material-ui/core/styles'
+import clsx from 'clsx'
 
 const useButtonStyles = makeStyles({
   root: {
@@ -92,7 +93,7 @@ const Button = React.forwardRef(function Button({
           root: customClasses.root,
           ...classes
         }}
-        className={`${className} ${variant === 'contained' && customClasses.contained} ${emphasis && customClasses.highLight}`}
+        className={clsx(className, variant === 'contained' && customClasses.contained, emphasis && customClasses.highLight)}
         ref={ref}
         {...otherProps}
       >
@@ -111,7 +112,7 @@ const Button = React.forwardRef(function Button({
         endIcon: customClasses.endIcon,
         ...classes
       }}
-      className={`${className} ${emphasis && customClasses.highLight}`}
+      className={clsx(className, emphasis && customClasses.highLight)}
       ref={ref}
       variant={variant}
       {...otherProps}
