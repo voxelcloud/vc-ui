@@ -22,6 +22,12 @@ const useButtonStyles = makeStyles({
       background: theme => theme.palette.primary.main,
     },
   },
+  startIcon: {
+    display: 'unset',
+  },
+  endIcon: {
+    display: 'unset',
+  },
   highLight: {
     color: theme => theme.palette.text.secondary,
     '&:hover': {
@@ -73,20 +79,20 @@ const useIconButtonStyles = makeStyles({
 })
 
 const Button = React.forwardRef(function Button({
-  type, children, className, emphasis, variant, iconName, iconClassName,
-  startIcon, endIcon, ...otherProps
+  type, classes, children, className, emphasis, variant, iconName, iconClassName, ...otherProps
 }, ref) {
 
   const theme = useTheme()
 
   if (type === 'icon') {
-    const classes = useIconButtonStyles(theme)
+    const customClasses = useIconButtonStyles(theme)
     return (
       <IconButton
         classes={{
-          root: classes.root,
+          root: customClasses.root,
+          ...classes
         }}
-        className={`${className} ${variant === 'contained' && classes.contained} ${emphasis && classes.highLight}`}
+        className={`${className} ${variant === 'contained' && customClasses.contained} ${emphasis && customClasses.highLight}`}
         ref={ref}
         {...otherProps}
       >
@@ -94,19 +100,20 @@ const Button = React.forwardRef(function Button({
       </IconButton>
     )
   }
-  const classes = useButtonStyles(theme)
+  const customClasses = useButtonStyles(theme)
   return (
     <MaButton
       classes={{
-        root: classes.root,
-        contained: classes.contained,
-        text: classes.text,
+        root: customClasses.root,
+        contained: customClasses.contained,
+        text: customClasses.text,
+        startIcon: customClasses.startIcon,
+        endIcon: customClasses.endIcon,
+        ...classes
       }}
-      className={`${className} ${emphasis && classes.highLight}`}
+      className={`${className} ${emphasis && customClasses.highLight}`}
       ref={ref}
       variant={variant}
-      startIcon={<i className={`icon iconfont ${startIcon}`} />}
-      endIcon={<i className={`icon iconfont ${endIcon}`} />}
       {...otherProps}
     >
       {children}
@@ -116,14 +123,13 @@ const Button = React.forwardRef(function Button({
 
 Button.propTypes = {
   type: t.oneOf(['primary', 'icon']),
+  classes: t.object,
   children: t.node,
   className: t.string,
   emphasis: t.bool,
   variant: t.oneOf(['contained', 'outlined', 'text']),
   iconName: t.string,
   iconClassName: t.string,
-  startIcon: t.string,
-  endIcon: t.string,
 }
 
 Button.defaultProps = {
