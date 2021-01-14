@@ -27,7 +27,7 @@ export default {
       include: ['src/**/*.js'],
       exclude: ['node_modules/**'],
       throwOnError: false,
-      throwOnWarning: true,
+      throwOnWarning: false,
       fix: true,
     }),
     babel({

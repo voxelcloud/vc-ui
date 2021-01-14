@@ -3,7 +3,7 @@ import t from 'prop-types'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import MaCheckbox from '@material-ui/core/Checkbox'
 import { makeStyles } from '@material-ui/core/styles'
-import clsx from "clsx";
+import clsx from 'clsx'
 
 const useControlLabelStyles = makeStyles({
   root: {
