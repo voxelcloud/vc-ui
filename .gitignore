@@ -1,0 +1,45 @@
+# Logs
+logs
+*.log
+
+# Dependency directories
+node_modules/
+
+# Optional npm cache directory
+.npm
+
+# dist 
+dist/
+dist/*
+
+build/
+build/*
+
+# temp
+temp/
+temp/*
+
+# lib
+lib/
+lib/*
+
+# karma
+coverage/
+coverage/*
+
+# Xcode
+.DS_Store
+
+.docz
+.docz/*
+
+.cache
+.cache/*
+
+# github pages
+gh_pages/
+gh_pages/*
+
+# idea
+.idea/
+

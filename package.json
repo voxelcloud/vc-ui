@@ -1,0 +1,95 @@
+{
+  "name": "voxelcloud-ui",
+  "version": "0.0.5",
+  "description": "",
+  "main": "dist/voxelcloud-ui.cjs.js",
+  "module": "dist/voxelcloud-ui.esm.js",
+  "files": [
+    "dist",
+    "src",
+    "README.md",
+    "package.json"
+  ],
+  "scripts": {
+    "commit": "git cz",
+    "start": "npm run dev",
+    "dev": "npm run docz:dev",
+    "build": "npm run clean && cross-env NODE_ENV=production rollup -c rollup.config.js",
+    "build:gh-pages": "npm run clean:gh-pages && node scripts/build_gh_pages.js",
+    "lint": "eslint src --ext js",
+    "clean": "node scripts/clean_dist.js",
+    "clean:docz": "node scripts/clean_docz.js",
+    "clean:gh-pages": "node scripts/clean_gh_pages.js",
+    "docz:dev": "wait-on http://localhost:3002 && open http://localhost:3002 & npm run clean:docz && docz dev ",
+    "docz:build": "npm run clean:docz && docz build",
+    "docz:serve": "docz build && docz serve",
+    "release": "standard-version",
+    "travis": "npm run lint && npm run test",
+    "test": "echo \"Error: no test specified\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/voxelcloud/vc-ui.git"
+  },
+  "author": "voxel cloud",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/voxelcloud/vc-ui/issues"
+  },
+  "homepage": "https://github.com/voxelcloud/vc-ui#readme",
+  "dependencies": {
+    "@material-ui/core": "^4.11.2",
+    "clsx": "^1.1.1",
+    "rc-notification": "4.4.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/plugin-proposal-object-rest-spread": "^7.12.1",
+    "@babel/plugin-transform-runtime": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-react": "^7.12.10",
+    "@babel/preset-stage-0": "^7.8.3",
+    "babel-eslint": "^10.1.0",
+    "chalk": "^4.1.0",
+    "commitizen": "^4.2.2",
+    "cross-env": "^7.0.3",
+    "cz-conventional-changelog": "^3.3.0",
+    "docz": "^2.3.1",
+    "eslint-plugin-react": "^7.22.0",
+    "fs-extra": "^9.0.1",
+    "log-symbols": "^4.0.0",
+    "open": "^7.3.0",
+    "ora": "^5.2.0",
+    "prop-types": "^15.7.2",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "rollup": "^2.35.1",
+    "rollup-plugin-alias": "^2.2.0",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-eslint": "^7.0.0",
+    "rollup-plugin-filesize": "^9.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-replace": "^2.2.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-uglify": "^6.0.4",
+    "shelljs": "^0.8.4",
+    "standard-version": "^9.1.0",
+    "uglify-es": "^3.3.9",
+    "wait-on": "^5.2.1",
+    "yargs": "^16.2.0"
+  },
+  "peerDependencies": {
+    "@material-ui/core": "^4.11.2",
+    "clsx": "^1.1.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-is": "^16.3.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  }
+}

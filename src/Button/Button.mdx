@@ -1,0 +1,55 @@
+--- 
+name: Button
+route: /vc-ui/
+--- 
+
+import { Playground, Props } from 'docz'
+import Button  from './';
+import Icon  from '../Icon';
+import '../assets/fonts/iconfont.css';
+
+# Button 
+
+## Props
+
+<Props of={Button} />
+
+## Icon Props
+
+<Props of={Icon} />
+
+## More Props
+
+[see details](https://material-ui.com/zh/api/button/)
+
+## Basic usage
+
+<Playground> 
+  <Button variant="text" emphasis>
+      文字型按钮1
+  </Button>
+  <Button variant="text">
+      文字型按钮2
+  </Button>
+  <Button variant="text" startIcon={<Icon name="refresh" />}>
+        文字图标型按钮
+  </Button>
+  <br/><br/>
+  <Button variant="outlined">
+      线框型按钮
+  </Button>
+  <br/><br/>
+  <Button variant="contained">
+      填充型按钮
+  </Button>
+  <br/><br/>
+  <Button variant="contained" startIcon={<Icon name="refresh" />}>
+      填充图标型按钮
+  </Button>
+  <br/><br/>
+  <Button type="icon" iconName="refresh" emphasis />
+  <Button type="icon" iconName="refresh" />
+  <Button type="icon" iconName="refresh" variant="contained" emphasis />
+  <Button type="icon" iconClassName="iconfont iconic_refresh_px" emphasis />
+</Playground>
+
