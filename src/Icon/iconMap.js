@@ -1,5 +1,6 @@
 const prefix = 'iconfont'
 const iconMap = {
+  search: `${prefix} iconic_search_px`,
   data: `${prefix} iconic_date_range_black_24px`,
   edit: `${prefix} iconic_mode_edit_px`,
   refresh: `${prefix} iconic_refresh_px`,
