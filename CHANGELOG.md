@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.7](https://github.com/voxelcloud/vc-ui/compare/v0.0.6...v0.0.7) (2021-01-15)
+
+
+### Features
+
+* add theme config api ([30a5579](https://github.com/voxelcloud/vc-ui/commit/30a5579a596e0d2d1bfa22e6d306e50c16485f65))
+* replace iconfont ([d56de61](https://github.com/voxelcloud/vc-ui/commit/d56de61f6a098a3d59dc397a20f08d939ca37289))
+* replace iconfont and modify button and icon in message ([e816f6d](https://github.com/voxelcloud/vc-ui/commit/e816f6db56b07eebd8009415103a30a84e40d0da))
+
+
+### Bug Fixes
+
+* button inner Icon compoent UI ([1216568](https://github.com/voxelcloud/vc-ui/commit/12165688f00254da0c3fb678249f12ec0ac20580))
+* message export ([eec2a85](https://github.com/voxelcloud/vc-ui/commit/eec2a85ecf2e47e5f206bf5116cee0b31e94ad31))
+
 ### [0.0.6](https://github.com/voxelcloud/vc-ui/compare/v0.0.5...v0.0.6) (2021-01-14)
 
 
