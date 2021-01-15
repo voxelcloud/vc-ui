@@ -85,7 +85,7 @@ const Button = React.forwardRef(function Button({
 
   const theme = useTheme()
   if (type === 'icon') {
-    const customClasses = useIconButtonStyles()
+    const customClasses = useIconButtonStyles(theme)
     return (
       <IconButton
         classes={{
