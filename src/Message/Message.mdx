@@ -40,7 +40,8 @@ import { setTheme } from '../theme'
             text: '查看患者',
             iconName: 'visibility',
             onClick: () => console.log('successful'),
-          }]
+          }],
+          duration: 20,
         })
       }
       const showMsg = () => {
@@ -51,7 +52,7 @@ import { setTheme } from '../theme'
       }
       return (
         <ThemeProvider theme={theme}>
-          <div>
+          <div id='app'>
             <Button variant="contained" onClick={showMessage}>显示Message</Button>
             <br/><br/>
             <Button variant="contained" onClick={showMsg}>显示Message2</Button>
