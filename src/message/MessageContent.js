@@ -1,9 +1,9 @@
 import React from 'react'
-import { useTheme, makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import t from 'prop-types'
-import Icon from '../Icon'
+import Icon from './Icon'
 import { getTheme } from '../theme'
-import Button from '../Button'
+import Button from './Button'
 import clsx from 'clsx'
 
 const useMsgContentStyles = makeStyles({
@@ -37,7 +37,7 @@ const useMsgContentStyles = makeStyles({
     cursor: 'pointer',
   },
   rightBtn: {
-    color: theme => theme?.palette?.primary?.main,
+    color: theme => theme?.palette?.primary?.light,
   },
   leftIcon: {
     marginRight: '10px',
@@ -48,7 +48,6 @@ function MessageContent({
   style, noticeIconName, noticeIconClassName, content, closable,
   expandActions, closeNotice, removeNotice,
 }) {
-  // const theme = useTheme()
   const theme = getTheme()
   const customClasses = useMsgContentStyles(theme)
   const expandClick = (e, onClick) => {
@@ -70,20 +69,19 @@ function MessageContent({
       </div>
       <div className={customClasses.actionBtn}>
         {
-          expandActions?.map((action, index) => (
+          Array.isArray(expandActions)? expandActions.map((action, index) => (
             <Button
               key={index}
               className={customClasses.rightBtn}
-              emphasis
               startIcon={<Icon name={action?.iconName} className={action?.iconClassName} />}
               onClick={e => expandClick(e, action.onClick)}
             >
               {action.text}
             </Button>
-          ))
+          )) : expandActions
         }
         {
-          closable && <Icon className={customClasses.clear} name="clear" onClick={closeNotice} />
+          closable && <Icon className={customClasses.clear} name="close" onClick={closeNotice} />
         }
       </div>
     </div>
@@ -96,7 +94,7 @@ MessageContent.propTypes = {
   noticeIconClassName: t.string,
   content: t.string,
   closable: t.bool,
-  expandActions: t.array,
+  expandActions: t.any,
   removeNotice: t.func,
   closeNotice: t.func,
 }
