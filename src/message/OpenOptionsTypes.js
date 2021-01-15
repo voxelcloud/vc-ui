@@ -12,7 +12,7 @@ OpenOptionsTypes.propTypes = {
   maxCount: t.number,
   getContainer: t.func,
   closable: t.bool,
-  expandActions: t.any,
+  expandActions: t.oneOf([t.array, t.node]),
   onClose: t.func
 }
 

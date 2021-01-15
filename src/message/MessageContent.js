@@ -2,8 +2,8 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import t from 'prop-types'
 import Icon from './Icon'
-import { getTheme } from '../theme'
 import Button from './Button'
+import { getTheme } from '../theme'
 import clsx from 'clsx'
 
 const useMsgContentStyles = makeStyles({
