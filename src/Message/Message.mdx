@@ -1,27 +1,41 @@
 --- 
-name: Message
+name: message
 route: /vc-ui/
 --- 
 
 import { Playground, Props } from 'docz' 
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import Button  from '../Button';
-import Message  from './';
+import Icon  from '../Icon'
+import message  from './';
+import { setTheme } from '../theme'
 
-# Message
+
+# message
 
 ## Props
 
-<Props of={Message} />
+<Props of={message} />
 
 ## Basic usage 
 
 <Playground>
   {
     () => {
+      const theme = createMuiTheme({
+        palette: {
+          primary: { main: 'rgba(35, 178, 190, 1)', contrastText: '#fff' },
+          error: { main: 'rgba(255, 152, 0, 1)' },
+          text: { disabled: 'rgba(0, 0, 0, 0.26)' },
+          action: { hover: 'rgba(0, 0, 0, 0.04)' },
+        },
+      });
+      setTheme(theme)
       const showMessage = () => {
-        Message.open({
+        message.open({
           noticeIconName: 'notifications',
           content: '转诊成功！',
+          style: { left: '50%', bottom: '20px', transform: 'translateX(-50%)', },
           expandActions: [{
             text: '查看患者',
             iconName: 'visibility',
@@ -30,18 +44,20 @@ import Message  from './';
         })
       }
       const showMsg = () => {
-        Message.open({
+        message.open({
           content: '密码设置成功！',
-          style: { left: '50%', transform: 'translateX(-50%)', }
+          style: { left: '50%', bottom: '20px', transform: 'translateX(-50%)', }
         })
-    }
-  return (
-    <div>
-      <Button variant="contained" onClick={showMessage}>显示Message</Button>
-      <br/><br/>
-      <Button variant="contained" onClick={showMsg}>显示Message2</Button>
-    </div>
-  )
+      }
+      return (
+        <ThemeProvider theme={theme}>
+          <div>
+            <Button variant="contained" onClick={showMessage}>显示Message</Button>
+            <br/><br/>
+            <Button variant="contained" onClick={showMsg}>显示Message2</Button>
+          </div>
+        </ThemeProvider>
+      )
     }
   }
 </Playground>

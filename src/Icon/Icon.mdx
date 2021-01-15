@@ -47,21 +47,15 @@ function Theme(props) {
   {
     () => (
       <div>
+        <Icon color="primary" name="search" />
         <Icon className="iconfont iconic_search_px" />
-        <Icon color="primary" className="iconfont iconic_search_px" />
         <br/>
        {
          Object.keys(iconMap).map((icon, i) => {
-           if((i + 1) % 6 === 0) {
-             return (
-               <>
-                {icon}: <Icon key={icon} name={icon} />
-                <br/>
-               </>
-             )
-           }
            return (
-             <span style={{ display: 'inline-block', width: '200px' }}>{icon}: <Icon key={icon} name={icon} /></span>
+            <span key={icon} style={{ display: 'inline-block', width: '200px' }} >
+               {icon}: <Icon name={icon} key={icon}/>
+            </span>
            )
          })
        }
