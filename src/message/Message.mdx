@@ -7,14 +7,19 @@ import { Playground, Props } from 'docz'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import Button  from '../Button';
 import message  from './';
+import MessagePropTypes from './MessagePropTypes'
+import OpenOptionsTypes from './OpenOptionsTypes'
 import { setTheme } from '../theme'
-
 
 # message
 
 ## Props
 
-<Props of={message} />
+<Props of={MessagePropTypes} />
+
+## open options
+
+<Props of={OpenOptionsTypes} />
 
 ## Basic usage 
 
@@ -24,13 +29,10 @@ import { setTheme } from '../theme'
       const theme = createMuiTheme({
         palette: {
           primary: { main: 'rgba(35, 178, 190, 1)', contrastText: '#fff', light: '#18FFFF' },
-          error: { main: 'rgba(255, 152, 0, 1)' },
-          text: { disabled: 'rgba(0, 0, 0, 0.26)' },
-          action: { hover: 'rgba(0, 0, 0, 0.04)' },
         },
       });
       setTheme(theme)
-      const showMessage = () => {
+      const showMsg = () => {
         message.open({
           noticeIconName: 'notifications',
           content: '转诊成功！',
@@ -43,7 +45,7 @@ import { setTheme } from '../theme'
           duration: 3,
         })
       }
-      const showMsg = () => {
+      const showMsg2 = () => {
         message.open({
           content: '密码设置成功！',
           style: { left: '50%', bottom: '20px', transform: 'translateX(-50%)', }
@@ -51,10 +53,10 @@ import { setTheme } from '../theme'
       }
       return (
         <ThemeProvider theme={theme}>
-          <div id='app'>
-            <Button variant="contained" onClick={showMessage}>显示Message</Button>
+          <div>
+            <Button variant="contained" onClick={showMsg}>显示Message</Button>
             <br/><br/>
-            <Button variant="contained" onClick={showMsg}>显示Message2</Button>
+            <Button variant="contained" onClick={showMsg2}>显示Message2</Button>
           </div>
         </ThemeProvider>
       )

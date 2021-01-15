@@ -44,10 +44,10 @@ const useMsgContentStyles = makeStyles({
   }
 })
 
-function MessageContent({
+const MessageContent = ({
   style, noticeIconName, noticeIconClassName, content, closable,
   expandActions, closeNotice, removeNotice,
-}) {
+}) => {
   const theme = getTheme()
   const customClasses = useMsgContentStyles(theme)
   const expandClick = (e, onClick) => {
@@ -69,7 +69,7 @@ function MessageContent({
       </div>
       <div className={customClasses.actionBtn}>
         {
-          Array.isArray(expandActions)? expandActions.map((action, index) => (
+          Array.isArray(expandActions) ? expandActions.map((action, index) => (
             <Button
               key={index}
               className={customClasses.rightBtn}
