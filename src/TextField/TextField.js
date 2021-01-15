@@ -96,7 +96,7 @@ const TextField = React.forwardRef(function TextField({
     InputProps.endAdornment = (
       <InputAdornment className="input-clear" position="end">
         <IconButton tabIndex="-1" onClick={onClear}>
-          <Icon name="clear" />
+          <Icon name="close" />
         </IconButton>
       </InputAdornment>
     )

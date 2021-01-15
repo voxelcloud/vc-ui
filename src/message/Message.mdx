@@ -6,7 +6,6 @@ route: /vc-ui/
 import { Playground, Props } from 'docz' 
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import Button  from '../Button';
-import Icon  from '../Icon'
 import message  from './';
 import { setTheme } from '../theme'
 
@@ -24,7 +23,7 @@ import { setTheme } from '../theme'
     () => {
       const theme = createMuiTheme({
         palette: {
-          primary: { main: 'rgba(35, 178, 190, 1)', contrastText: '#fff' },
+          primary: { main: 'rgba(35, 178, 190, 1)', contrastText: '#fff', light: '#18FFFF' },
           error: { main: 'rgba(255, 152, 0, 1)' },
           text: { disabled: 'rgba(0, 0, 0, 0.26)' },
           action: { hover: 'rgba(0, 0, 0, 0.04)' },
@@ -35,13 +34,13 @@ import { setTheme } from '../theme'
         message.open({
           noticeIconName: 'notifications',
           content: '转诊成功！',
-          style: { left: '50%', bottom: '20px', transform: 'translateX(-50%)', },
+          style: { left: '50%', bottom: '20px', transform: 'translateX(-50%)' },
           expandActions: [{
             text: '查看患者',
-            iconName: 'visibility',
+            iconName: 'notifications',
             onClick: () => console.log('successful'),
           }],
-          duration: 20,
+          duration: 3,
         })
       }
       const showMsg = () => {
