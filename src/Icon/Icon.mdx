@@ -47,8 +47,13 @@ function Theme(props) {
   {
     () => (
       <div>
-        <Icon color="primary" name="search" />
-        <Icon className="iconfont iconic_search_px" />
+        <Icon name="search" color="primary" />
+        <Icon name="search" color="secondary" />
+        <Icon name="search" color="warning" />
+        <Icon name="search" color="success" />
+        <Icon name="search" color="info" />
+        <Icon name="search" color="text" />
+        <Icon className="iconfont iconic_search_px" color='disabled' />
         <br/>
        {
          Object.keys(iconMap).map((icon, i) => {
