@@ -9,7 +9,6 @@ import clsx from 'clsx'
 const useButtonStyles = makeStyles({
   root: {
     height: '36px',
-    minWidth: '88px',
     padding: '0 16px',
     borderRadius: '4px',
     '&:hover': {
