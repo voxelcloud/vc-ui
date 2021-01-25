@@ -4,6 +4,7 @@ import t from 'prop-types'
 const OpenOptionsTypes = () => <div></div>
 
 OpenOptionsTypes.propTypes = {
+  type: t.oneOf(['primary', 'secondary', 'warning', 'error', 'disabled', 'success', 'info', 'text']),
   noticeIconName: t.string,
   noticeIconClassName: t.string,
   content: t.string,

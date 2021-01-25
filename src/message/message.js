@@ -26,7 +26,7 @@ function getMessageInstance(maxCount, getContainer, callback) {
 }
 
 function notice({
-  noticeIconName, noticeIconClassName, content, duration = DefaultDuration, style, maxCount = 1, getContainer,
+  type, noticeIconName, noticeIconClassName, content, duration = DefaultDuration, style, maxCount = 1, getContainer,
   closable = true, expandActions = [], onClose,
 }) {
   const key = Date.now()
@@ -46,6 +46,7 @@ function notice({
       content: (
         <MessageContent
           style={style}
+          type={type}
           content={content}
           closable={closable}
           noticeIconName={noticeIconName}

@@ -45,7 +45,7 @@ const useMsgContentStyles = makeStyles({
 })
 
 const MessageContent = ({
-  style, noticeIconName, noticeIconClassName, content, closable,
+  type, style, noticeIconName, noticeIconClassName, content, closable,
   expandActions, closeNotice, removeNotice,
 }) => {
   const theme = getTheme()
@@ -62,7 +62,7 @@ const MessageContent = ({
       <div className={customClasses.contain}>
         {
           noticeIconName || noticeIconClassName ? (
-            <Icon name={noticeIconName} className={clsx(customClasses.leftIcon, noticeIconClassName)} />
+            <Icon color={type} name={noticeIconName} className={clsx(customClasses.leftIcon, noticeIconClassName)} />
           ) : null
         }
         <span>{content}</span>
@@ -89,6 +89,7 @@ const MessageContent = ({
 }
 
 MessageContent.propTypes = {
+  type: t.oneOf(['primary', 'secondary', 'warning', 'error', 'disabled', 'success', 'info', 'text']),
   style: t.object,
   noticeIconName: t.string,
   noticeIconClassName: t.string,
