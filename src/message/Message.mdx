@@ -35,13 +35,13 @@ import { setTheme } from '../theme'
       setTheme(theme)
       const showMsg = () => {
         message.open({
-          type: 'disabled',
-          noticeIconName: 'notifications',
+          type: 'warning',
+          noticeIconName: 'notification',
           content: '转诊成功！',
           style: { left: '50%', bottom: '20px', transform: 'translateX(-50%)' },
           expandActions: [{
             text: '查看患者',
-            iconName: 'notifications',
+            iconName: 'notification',
             onClick: () => console.log('successful'),
           }],
           duration: 3,
