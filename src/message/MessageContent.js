@@ -1,8 +1,9 @@
 import React from 'react'
-import { useTheme, makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import t from 'prop-types'
-import Icon from '../Icon'
-import Button from '../Button'
+import Icon from './Icon'
+import Button from './Button'
+import { getTheme } from '../theme'
 import clsx from 'clsx'
 
 const useMsgContentStyles = makeStyles({
@@ -20,7 +21,7 @@ const useMsgContentStyles = makeStyles({
     backgroundColor: 'rgb(69,79,91)',
     padding: '16px',
     fontSize: '16px',
-    color: theme => theme.palette.primary.contrastText,
+    color: theme => theme?.palette?.primary?.contrastText,
     boxShadow: '0 9px 46px rgba(0, 0, 0, 0.14), 0 24px 38px rgba(0, 0, 0, 0.18), 0 11px 15px rgba(0, 0, 0, 0.24)',
     zIndex: '999',
   },
@@ -36,20 +37,19 @@ const useMsgContentStyles = makeStyles({
     cursor: 'pointer',
   },
   rightBtn: {
-    color: theme => theme.palette.primary.main,
+    color: theme => theme?.palette?.primary?.light,
   },
   leftIcon: {
     marginRight: '10px',
   }
 })
 
-function MessageContent({
-  style, noticeIconName, noticeIconClassName, content, closable,
+const MessageContent = ({
+  type, style, noticeIconName, noticeIconClassName, content, closable,
   expandActions, closeNotice, removeNotice,
-}) {
-  const theme = useTheme()
+}) => {
+  const theme = getTheme()
   const customClasses = useMsgContentStyles(theme)
-
   const expandClick = (e, onClick) => {
     if (onClick) {
       onClick(e)
@@ -62,27 +62,26 @@ function MessageContent({
       <div className={customClasses.contain}>
         {
           noticeIconName || noticeIconClassName ? (
-            <Icon name={noticeIconName} className={clsx(customClasses.leftIcon, noticeIconClassName)} />
+            <Icon color={type} name={noticeIconName} className={clsx(customClasses.leftIcon, noticeIconClassName)} />
           ) : null
         }
         <span>{content}</span>
       </div>
       <div className={customClasses.actionBtn}>
         {
-          expandActions?.map((action, index) => (
+          Array.isArray(expandActions) ? expandActions.map((action, index) => (
             <Button
               key={index}
               className={customClasses.rightBtn}
-              emphasis
               startIcon={<Icon name={action?.iconName} className={action?.iconClassName} />}
               onClick={e => expandClick(e, action.onClick)}
             >
               {action.text}
             </Button>
-          ))
+          )) : expandActions
         }
         {
-          closable && <Icon className={customClasses.clear} name="clear" onClick={closeNotice} />
+          closable && <Icon className={customClasses.clear} name="close" onClick={closeNotice} />
         }
       </div>
     </div>
@@ -90,12 +89,13 @@ function MessageContent({
 }
 
 MessageContent.propTypes = {
+  type: t.oneOf(['primary', 'secondary', 'warning', 'error', 'disabled', 'success', 'info', 'text']),
   style: t.object,
   noticeIconName: t.string,
   noticeIconClassName: t.string,
   content: t.string,
   closable: t.bool,
-  expandActions: t.array,
+  expandActions: t.any,
   removeNotice: t.func,
   closeNotice: t.func,
 }

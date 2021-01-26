@@ -9,18 +9,17 @@ import clsx from 'clsx'
 const useButtonStyles = makeStyles({
   root: {
     height: '36px',
-    minWidth: '88px',
     padding: '0 16px',
     borderRadius: '4px',
     '&:hover': {
-      backgroundColor: theme => theme.palette.action.hover,
+      backgroundColor: theme => theme?.palette?.action.hover,
     }
   },
   contained: {
-    color: theme => theme.palette.primary.contrastText,
+    color: theme => theme?.palette?.primary.contrastText,
     boxShadow: 'none',
     '&:hover': {
-      background: theme => theme.palette.primary.main,
+      background: theme => theme?.palette?.primary.main,
     },
   },
   startIcon: {
@@ -30,21 +29,21 @@ const useButtonStyles = makeStyles({
     display: 'unset',
   },
   highLight: {
-    color: theme => theme.palette.text.secondary,
+    color: theme => theme?.palette?.text.secondary,
     '&:hover': {
       background: 'unset !important',
-      color: theme => theme.palette.primary.main,
+      color: theme => theme?.palette?.primary.main,
     },
     '&.MuiButton-contained': {
       background: 'unset',
-      color: theme => theme.palette.text.secondary,
+      color: theme => theme?.palette?.text.secondary,
       '&:hover': {
-        background: theme => theme.palette.action.hover,
-        color: theme => theme.palette.primary.main,
+        background: theme => theme?.palette?.action.hover,
+        color: theme => theme?.palette?.primary.main,
         boxShadow: 'none',
       },
       '&:disabled': {
-        color: theme => theme.palette.action.disabled,
+        color: theme => theme?.palette?.action.disabled,
       },
     },
   }
@@ -55,26 +54,26 @@ const useIconButtonStyles = makeStyles({
     width: '40px',
     height: '40px',
     '&:hover': {
-      color: theme => theme.palette.primary.main,
+      color: theme => theme?.palette?.primary.main,
     },
     '& .iconfont': {
       fontSize: '24px',
     }
   },
   contained: {
-    backgroundColor: theme => theme.palette.action.hover,
+    backgroundColor: theme => theme?.palette?.action?.hover,
     '&:hover': {
-      backgroundColor: theme => theme.palette.primary.main,
-      color: theme => theme.palette.primary.contrastText,
+      backgroundColor: theme => theme?.palette?.primary?.main,
+      color: theme => theme?.palette?.primary?.contrastText,
     },
   },
   highLight: {
-    color: theme => theme.palette.text.secondary,
+    color: theme => theme?.palette?.text?.secondary,
     '&:hover': {
       background: 'unset',
     },
     '&:disabled': {
-      backgroundColor: theme => theme.palette.action.disabledBackground,
+      backgroundColor: theme => theme?.palette?.action?.disabledBackground,
     },
   }
 })
@@ -84,7 +83,6 @@ const Button = React.forwardRef(function Button({
 }, ref) {
 
   const theme = useTheme()
-
   if (type === 'icon') {
     const customClasses = useIconButtonStyles(theme)
     return (

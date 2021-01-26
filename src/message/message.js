@@ -6,7 +6,7 @@ const DefaultDuration = 3 // second
 const transitionName = 'move-down'
 let messageInstance
 
-function getMessageInstance(maxCount, callback) {
+function getMessageInstance(maxCount, getContainer, callback) {
   if (messageInstance) {
     callback(messageInstance)
     return
@@ -14,6 +14,7 @@ function getMessageInstance(maxCount, callback) {
   Notification.newInstance({
     transitionName,
     maxCount,
+    getContainer
   }, (instance) => {
     if (messageInstance) {
       callback(messageInstance)
@@ -25,7 +26,7 @@ function getMessageInstance(maxCount, callback) {
 }
 
 function notice({
-  noticeIconName, noticeIconClassName, content, duration = DefaultDuration, style, maxCount = 1,
+  type, noticeIconName, noticeIconClassName, content, duration = DefaultDuration, style, maxCount = 1, getContainer,
   closable = true, expandActions = [], onClose,
 }) {
   const key = Date.now()
@@ -39,12 +40,13 @@ function notice({
     if (onClose) onClose(e)
   }
 
-  getMessageInstance(maxCount, (instance) => {
+  getMessageInstance(maxCount, getContainer, (instance) => {
     instance.notice({
       key,
       content: (
         <MessageContent
           style={style}
+          type={type}
           content={content}
           closable={closable}
           noticeIconName={noticeIconName}

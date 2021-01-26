@@ -2,6 +2,54 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.8](https://github.com/voxelcloud/vc-ui/compare/v0.0.7...v0.0.8) (2021-01-26)
+
+
+### Features
+
+* add type props in message ([424b41d](https://github.com/voxelcloud/vc-ui/commit/424b41d00da6cdb8ca07b21daf01a890bdf8621f))
+* add useEventCallback hook ([acdb9ff](https://github.com/voxelcloud/vc-ui/commit/acdb9ff24da4f80a6c4c14004829c58918625603))
+* adjust button min width ([c4341c9](https://github.com/voxelcloud/vc-ui/commit/c4341c96ba7a15432e35e5a36563b6248805aa7a))
+* update iconfont and add iconMap ([acc0e83](https://github.com/voxelcloud/vc-ui/commit/acc0e83169b06527ac23142ebaab6a52f775a379))
+
+
+### Bug Fixes
+
+* icon component color ([47cc2b3](https://github.com/voxelcloud/vc-ui/commit/47cc2b3d98cce0dcfca1754fbd8475dbc46f13a5))
+
+### [0.0.7](https://github.com/voxelcloud/vc-ui/compare/v0.0.6...v0.0.7) (2021-01-15)
+
+
+### Features
+
+* add theme config api ([30a5579](https://github.com/voxelcloud/vc-ui/commit/30a5579a596e0d2d1bfa22e6d306e50c16485f65))
+* replace iconfont ([d56de61](https://github.com/voxelcloud/vc-ui/commit/d56de61f6a098a3d59dc397a20f08d939ca37289))
+* replace iconfont and modify button and icon in message ([e816f6d](https://github.com/voxelcloud/vc-ui/commit/e816f6db56b07eebd8009415103a30a84e40d0da))
+
+
+### Bug Fixes
+
+* button inner Icon compoent UI ([1216568](https://github.com/voxelcloud/vc-ui/commit/12165688f00254da0c3fb678249f12ec0ac20580))
+* message export ([eec2a85](https://github.com/voxelcloud/vc-ui/commit/eec2a85ecf2e47e5f206bf5116cee0b31e94ad31))
+
+### [0.0.6](https://github.com/voxelcloud/vc-ui/compare/v0.0.5...v0.0.6) (2021-01-14)
+
+
+### Features
+
+* add Icon component ([0f64d62](https://github.com/voxelcloud/vc-ui/commit/0f64d626d0b4ff70d235e072e421f014441a14c1))
+* add Message component ([6a21a07](https://github.com/voxelcloud/vc-ui/commit/6a21a070ac58d5a8ab79c85ccfbbe7620bccb797))
+* add TextField componemt ([f85e866](https://github.com/voxelcloud/vc-ui/commit/f85e866ed3f8bcb0670583ebf74461ca6c481b8f))
+* use clsx and Icon component ([49e8dda](https://github.com/voxelcloud/vc-ui/commit/49e8ddae6d4c6c51786df32184a5c61f44ab86ad))
+* utils ([8b82e9e](https://github.com/voxelcloud/vc-ui/commit/8b82e9e091a090507e407b0764d7ddf1b90934df))
+
+
+### Bug Fixes
+
+* modify package.json ([cc5bc55](https://github.com/voxelcloud/vc-ui/commit/cc5bc555efea2c035e373ae4707c703fea4199ed))
+* utils capitalize ([c709e9c](https://github.com/voxelcloud/vc-ui/commit/c709e9cd57545573ec08fb5700271fa21fed533c))
+* utils export ([0d51d0f](https://github.com/voxelcloud/vc-ui/commit/0d51d0f1f699853c4b9df1f0447a5aca1ccdda4a))
+
 ### [0.0.5](https://github.com/voxelcloud/vc-ui/compare/v0.0.4...v0.0.5) (2021-01-04)
 
 

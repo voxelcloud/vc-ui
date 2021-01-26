@@ -1,0 +1,68 @@
+--- 
+name: message
+route: /vc-ui/
+--- 
+
+import { Playground, Props } from 'docz' 
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import Button  from '../Button';
+import Select  from '../Select';
+import message  from './';
+import MessagePropTypes from './MessagePropTypes'
+import OpenOptionsTypes from './OpenOptionsTypes'
+import { setTheme } from '../theme'
+
+# message
+
+## Props
+
+<Props of={MessagePropTypes} />
+
+## open options
+
+<Props of={OpenOptionsTypes} />
+
+## Basic usage 
+
+<Playground>
+  {
+    () => {
+      const theme = createMuiTheme({
+        palette: {
+          primary: { main: 'rgba(35, 178, 190, 1)', contrastText: '#fff', light: '#18FFFF' },
+        },
+      });
+      setTheme(theme)
+      const showMsg = () => {
+        message.open({
+          type: 'warning',
+          noticeIconName: 'notification',
+          content: '转诊成功！',
+          style: { left: '50%', bottom: '20px', transform: 'translateX(-50%)' },
+          expandActions: [{
+            text: '查看患者',
+            iconName: 'notification',
+            onClick: () => console.log('successful'),
+          }],
+          duration: 3,
+        })
+      }
+      const showMsg2 = () => {
+        message.open({
+          content: '密码设置成功！',
+          style: { left: '50%', bottom: '20px', transform: 'translateX(-50%)', }
+        })
+      }
+      return (
+        <ThemeProvider theme={theme}>
+          <div>
+            <Button variant="contained" onClick={showMsg}>显示Message</Button>
+            <br/><br/>
+            <Button variant="contained" onClick={showMsg2}>显示Message2</Button>
+          </div>
+        </ThemeProvider>
+      )
+    }
+  }
+</Playground>
+
