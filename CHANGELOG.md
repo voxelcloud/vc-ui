@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.8](https://github.com/voxelcloud/vc-ui/compare/v0.0.7...v0.0.8) (2021-01-26)
+
+
+### Features
+
+* add type props in message ([424b41d](https://github.com/voxelcloud/vc-ui/commit/424b41d00da6cdb8ca07b21daf01a890bdf8621f))
+* add useEventCallback hook ([acdb9ff](https://github.com/voxelcloud/vc-ui/commit/acdb9ff24da4f80a6c4c14004829c58918625603))
+* adjust button min width ([c4341c9](https://github.com/voxelcloud/vc-ui/commit/c4341c96ba7a15432e35e5a36563b6248805aa7a))
+* update iconfont and add iconMap ([acc0e83](https://github.com/voxelcloud/vc-ui/commit/acc0e83169b06527ac23142ebaab6a52f775a379))
+
+
+### Bug Fixes
+
+* icon component color ([47cc2b3](https://github.com/voxelcloud/vc-ui/commit/47cc2b3d98cce0dcfca1754fbd8475dbc46f13a5))
+
 ### [0.0.7](https://github.com/voxelcloud/vc-ui/compare/v0.0.6...v0.0.7) (2021-01-15)
 
 
