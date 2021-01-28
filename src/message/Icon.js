@@ -5,35 +5,35 @@ import iconMap from '../Icon/iconMap'
 import { makeStyles } from '@material-ui/core/styles'
 import { getTheme } from '../theme'
 
-const useIconStyles = makeStyles(theme => ({
+const useIconStyles = makeStyles({
   vcRoot: {
     fontSize: '24px',
   },
   primary: {
-    color: theme?.palette?.primary?.main
+    color: theme => theme?.palette?.primary?.main
   },
   secondary: {
-    color: theme?.palette?.secondary?.main
+    color: theme => theme?.palette?.secondary?.main
   },
   error: {
-    color: theme?.palette?.error?.main
+    color: theme => theme?.palette?.error?.main
   },
   disabled: {
-    color: theme?.palette?.action?.disabled
+    color: theme => theme?.palette?.action?.disabled
   },
   warning: {
-    color: theme?.palette?.warning?.main
+    color: theme => theme?.palette?.warning?.main
   },
   success: {
-    color: theme?.palette?.success?.main
+    color: theme => theme?.palette?.success?.main
   },
   info: {
-    color: theme?.palette?.info?.main
+    color: theme => theme?.palette?.info?.main
   },
   text: {
-    color: theme?.palette?.text?.main
+    color: theme => theme?.palette?.text?.main
   }
-}))
+})
 
 function Icon({ color, className, name, ...otherProps }) {
   const theme = getTheme()

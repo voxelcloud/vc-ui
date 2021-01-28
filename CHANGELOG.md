@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.9](https://github.com/voxelcloud/vc-ui/compare/v0.0.8...v0.0.9) (2021-01-28)
+
+
+### Bug Fixes
+
+* theme error ([b3cbb6a](https://github.com/voxelcloud/vc-ui/commit/b3cbb6a2ebe05853224d386b54fe53f00649245c))
+
 ### [0.0.8](https://github.com/voxelcloud/vc-ui/compare/v0.0.7...v0.0.8) (2021-01-26)
 
 
