@@ -35,7 +35,7 @@ import { setTheme } from '../theme'
       setTheme(theme)
       const showMsg = () => {
         message.open({
-          type: 'warning',
+          type: 'primary',
           noticeIconName: 'notification',
           content: '转诊成功！',
           style: { left: '50%', bottom: '20px', transform: 'translateX(-50%)' },
@@ -49,8 +49,16 @@ import { setTheme } from '../theme'
       }
       const showMsg2 = () => {
         message.open({
+          type: 'warning',
+          noticeIconName: 'notification',
           content: '密码设置成功！',
           style: { left: '50%', bottom: '20px', transform: 'translateX(-50%)', }
+        })
+      }
+      const showMsg3 = () => {
+        message.open({
+          content: '密码设置成功！',
+          style: { right: '50px', bottom: '20px', }
         })
       }
       return (
@@ -59,6 +67,8 @@ import { setTheme } from '../theme'
             <Button variant="contained" onClick={showMsg}>显示Message</Button>
             <br/><br/>
             <Button variant="contained" onClick={showMsg2}>显示Message2</Button>
+            <br/><br/>
+            <Button variant="contained" onClick={showMsg3}>显示Message3</Button>
           </div>
         </ThemeProvider>
       )
