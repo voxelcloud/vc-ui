@@ -6,28 +6,39 @@ const DefaultDuration = 3 // second
 const transitionName = 'move-down'
 let messageInstance
 
-function getMessageInstance(maxCount, getContainer, callback) {
-  if (messageInstance) {
-    callback(messageInstance)
-    return
-  }
-  Notification.newInstance({
-    transitionName,
-    maxCount,
-    getContainer
-  }, (instance) => {
+function getMessageInstance(isNewInstance, maxCount, getContainer, callback) {
+  if (isNewInstance) {
+    Notification.newInstance({
+      transitionName,
+      maxCount,
+      getContainer
+    }, (instance) => {
+      messageInstance = instance
+      callback(messageInstance)
+    })
+  } else {
     if (messageInstance) {
       callback(messageInstance)
       return
     }
-    messageInstance = instance
-    callback(instance)
-  })
+    Notification.newInstance({
+      transitionName,
+      maxCount,
+      getContainer
+    }, (instance) => {
+      if (messageInstance) {
+        callback(messageInstance)
+        return
+      }
+      messageInstance = instance
+      callback(instance)
+    })
+  }
 }
 
 function notice({
-  type, noticeIconName, noticeIconClassName, content, duration = DefaultDuration, style, maxCount = 1, getContainer,
-  closable = true, expandActions = [], onClose,
+  isNewInstance = false, type, noticeIconName, noticeIconClassName, content, duration = DefaultDuration,
+  style, maxCount = 1, getContainer, closable = true, expandActions = [], onClose,
 }) {
   const key = Date.now()
 
@@ -40,7 +51,7 @@ function notice({
     if (onClose) onClose(e)
   }
 
-  getMessageInstance(maxCount, getContainer, (instance) => {
+  getMessageInstance(isNewInstance, maxCount, getContainer, (instance) => {
     instance.notice({
       key,
       content: (
