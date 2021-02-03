@@ -35,6 +35,7 @@ import { setTheme } from '../theme'
       setTheme(theme)
       const showMsg = () => {
         message.open({
+          isNewInstance: true,
           type: 'primary',
           noticeIconName: 'notification',
           content: '转诊成功！',
@@ -44,7 +45,7 @@ import { setTheme } from '../theme'
             iconName: 'notification',
             onClick: () => console.log('successful'),
           }],
-          duration: 3,
+          duration: 30,
         })
       }
       const showMsg2 = () => {
