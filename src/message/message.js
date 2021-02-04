@@ -4,21 +4,22 @@ import MessageContent from './MessageContent'
 
 const DefaultDuration = 3 // second
 const transitionName = 'move-down'
-let messageInstance
+let messageInstance = {}
 
-function getMessageInstance(isNewInstance, maxCount, getContainer, callback) {
-  if (isNewInstance) {
+function getMessageInstance(key, IsSingleton, maxCount, getContainer, callback) {
+
+  if (!IsSingleton) {
     Notification.newInstance({
       transitionName,
       maxCount,
       getContainer
     }, (instance) => {
-      messageInstance = instance
-      callback(messageInstance)
+      messageInstance[key] = instance
+      callback(instance)
     })
   } else {
-    if (messageInstance) {
-      callback(messageInstance)
+    if (messageInstance[key]) {
+      callback(messageInstance[key])
       return
     }
     Notification.newInstance({
@@ -26,24 +27,24 @@ function getMessageInstance(isNewInstance, maxCount, getContainer, callback) {
       maxCount,
       getContainer
     }, (instance) => {
-      if (messageInstance) {
-        callback(messageInstance)
+      if (messageInstance[key]) {
+        callback(messageInstance[key])
         return
       }
-      messageInstance = instance
+      messageInstance[key] = instance
       callback(instance)
     })
   }
 }
 
 function notice({
-  isNewInstance = false, type, noticeIconName, noticeIconClassName, content, duration = DefaultDuration,
+  IsSingleton = true, type, noticeIconName, noticeIconClassName, content, duration = DefaultDuration,
   style, maxCount = 1, getContainer, closable = true, expandActions = [], onClose,
 }) {
   const key = Date.now()
 
   const removeNotice = () => {
-    messageInstance.removeNotice(key)
+    messageInstance[key].removeNotice(key)
   }
 
   const closeNotice = (e) => {
@@ -51,7 +52,7 @@ function notice({
     if (onClose) onClose(e)
   }
 
-  getMessageInstance(isNewInstance, maxCount, getContainer, (instance) => {
+  getMessageInstance(key, IsSingleton, maxCount, getContainer, (instance) => {
     instance.notice({
       key,
       content: (
@@ -74,10 +75,10 @@ function notice({
 }
 
 function destroy() {
-  if (messageInstance) {
-    messageInstance.destroy()
-    messageInstance = null
+  for (let key in messageInstance) {
+    messageInstance[key].destroy()
   }
+  messageInstance = {}
 }
 
 const message = {
