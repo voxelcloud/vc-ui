@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.10](https://github.com/voxelcloud/vc-ui/compare/v0.0.9...v0.0.10) (2021-02-04)
+
+
+### Features
+
+* add isNewInstance props in message ([af8f269](https://github.com/voxelcloud/vc-ui/commit/af8f2691a82e2fd9d5671499c4382f5bd21a24c8))
+* modify logic of message ([e424924](https://github.com/voxelcloud/vc-ui/commit/e424924612df73b1c922b9fb42a62dc66c73d01d))
+
+
+### Bug Fixes
+
+* destroy message error ([23f3ef6](https://github.com/voxelcloud/vc-ui/commit/23f3ef6ad06f625cac1ca17f19fcaf44408b9338))
+
 ### [0.0.9](https://github.com/voxelcloud/vc-ui/compare/v0.0.8...v0.0.9) (2021-01-28)
 
 
