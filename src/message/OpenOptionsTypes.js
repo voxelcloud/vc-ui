@@ -4,6 +4,7 @@ import t from 'prop-types'
 const OpenOptionsTypes = () => <div></div>
 
 OpenOptionsTypes.propTypes = {
+  IsSingleton: t.bool,
   type: t.oneOf(['primary', 'secondary', 'warning', 'error', 'disabled', 'success', 'info', 'text']),
   noticeIconName: t.string,
   noticeIconClassName: t.string,
@@ -16,6 +17,14 @@ OpenOptionsTypes.propTypes = {
   expandActions: t.oneOf([t.array, t.node]),
   onClose: t.func
 }
+
+OpenOptionsTypes.defaultProps = {
+  IsSingleton: true,
+  duration: 3,
+  maxCount: 1,
+  closable: true,
+}
+
 
 OpenOptionsTypes.displayName = 'VcMessageOpen'
 

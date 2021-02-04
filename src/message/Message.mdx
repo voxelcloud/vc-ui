@@ -35,6 +35,7 @@ import { setTheme } from '../theme'
       setTheme(theme)
       const showMsg = () => {
         message.open({
+          IsSingleton: false,
           type: 'primary',
           noticeIconName: 'notification',
           content: '转诊成功！',
@@ -44,7 +45,7 @@ import { setTheme } from '../theme'
             iconName: 'notification',
             onClick: () => console.log('successful'),
           }],
-          duration: 3,
+          duration: 30,
         })
       }
       const showMsg2 = () => {
@@ -61,6 +62,9 @@ import { setTheme } from '../theme'
           style: { right: '50px', bottom: '20px', }
         })
       }
+      const destroyMessage = () => {
+      message.destroy()
+      }
       return (
         <ThemeProvider theme={theme}>
           <div>
@@ -69,6 +73,8 @@ import { setTheme } from '../theme'
             <Button variant="contained" onClick={showMsg2}>显示Message2</Button>
             <br/><br/>
             <Button variant="contained" onClick={showMsg3}>显示Message3</Button>
+            <br/><br/>
+            <Button variant="contained" onClick={destroyMessage}>销毁message</Button>
           </div>
         </ThemeProvider>
       )
