@@ -75,8 +75,8 @@ function notice({
 }
 
 function destroy() {
-  for (let item in messageInstance) {
-    item.destroy()
+  for (let key in messageInstance) {
+    messageInstance[key].destroy()
   }
   messageInstance = {}
 }
