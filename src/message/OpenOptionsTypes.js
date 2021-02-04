@@ -4,7 +4,7 @@ import t from 'prop-types'
 const OpenOptionsTypes = () => <div></div>
 
 OpenOptionsTypes.propTypes = {
-  IsSingleton: t.bool,
+  isSingleton: t.bool,
   type: t.oneOf(['primary', 'secondary', 'warning', 'error', 'disabled', 'success', 'info', 'text']),
   noticeIconName: t.string,
   noticeIconClassName: t.string,
@@ -19,7 +19,7 @@ OpenOptionsTypes.propTypes = {
 }
 
 OpenOptionsTypes.defaultProps = {
-  IsSingleton: true,
+  isSingleton: true,
   duration: 3,
   maxCount: 1,
   closable: true,

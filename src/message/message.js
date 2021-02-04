@@ -6,9 +6,9 @@ const DefaultDuration = 3 // second
 const transitionName = 'move-down'
 let messageInstance = {}
 
-function getMessageInstance(key, IsSingleton, maxCount, getContainer, callback) {
+function getMessageInstance(key, isSingleton, maxCount, getContainer, callback) {
 
-  if (!IsSingleton) {
+  if (!isSingleton) {
     Notification.newInstance({
       transitionName,
       maxCount,
@@ -38,7 +38,7 @@ function getMessageInstance(key, IsSingleton, maxCount, getContainer, callback) 
 }
 
 function notice({
-  IsSingleton = true, type, noticeIconName, noticeIconClassName, content, duration = DefaultDuration,
+  isSingleton = true, type, noticeIconName, noticeIconClassName, content, duration = DefaultDuration,
   style, maxCount = 1, getContainer, closable = true, expandActions = [], onClose,
 }) {
   const key = Date.now()
@@ -52,7 +52,7 @@ function notice({
     if (onClose) onClose(e)
   }
 
-  getMessageInstance(key, IsSingleton, maxCount, getContainer, (instance) => {
+  getMessageInstance(key, isSingleton, maxCount, getContainer, (instance) => {
     instance.notice({
       key,
       content: (
