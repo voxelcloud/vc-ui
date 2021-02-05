@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.11](https://github.com/voxelcloud/vc-ui/compare/v0.0.10...v0.0.11) (2021-02-05)
+
+
+### Bug Fixes
+
+* rename isSingleton ([c3bf3c6](https://github.com/voxelcloud/vc-ui/commit/c3bf3c65114a2cbd3fa9a4f689674c308f4b8680))
+
 ### [0.0.10](https://github.com/voxelcloud/vc-ui/compare/v0.0.9...v0.0.10) (2021-02-04)
 
 
