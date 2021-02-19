@@ -1,0 +1,94 @@
+--- 
+name: useClickAway
+route: /vc-ui/
+--- 
+
+import { Playground, Props } from 'docz'
+import { useState, useRef } from 'react'
+import useClickAway  from './index';
+import UseClickAwayPropTypes from './UseClickAwayPropTypes'
+
+# useClickAway
+
+## Props
+
+<Props of={UseClickAwayPropTypes} />
+
+## Basic usage
+
+  基础用法，ref传入dom
+
+<Playground>
+  {
+    () => {
+      const [counter, setCounter] = useState(0)
+      const ref = useRef()
+      useClickAway(
+        () => {
+          setCounter((s) => s + 1)
+        }, 
+        ref
+      )
+      return (
+        <div>
+          <span ref={ref}>
+            <button type="button">box1</button>
+          </span>
+          <p>counter: {counter}</p>
+        </div>
+      )
+    }
+  }
+</Playground>
+
+## Custom Dom
+
+  支持直接传入 DOM 对象或通过 function 返回一个对象的方式引入
+
+<Playground>
+  {
+    () => {
+      const [counter, setCounter] = useState(0)
+      useClickAway(
+        () => {
+          setCounter((s) => s + 1)
+        }, 
+        () => document.querySelector('#box2')
+      )
+      return (
+        <div>
+          <button type="button" id='box2'>box2</button>
+          <p>counter: {counter}</p>
+        </div>
+      )
+    }
+  }
+</Playground>
+
+## Multi Dom
+
+  支持传入多个目标对象
+
+<Playground>
+  {
+    () => {
+      const [counter, setCounter] = useState(0)
+      const ref1 = useRef()
+      const ref2 = useRef()
+      useClickAway(
+        () => {
+          setCounter((s) => s + 1)
+        }, 
+        [ref1, ref2],
+      )
+      return (
+        <div>
+          <button type="button" ref={ref1}>box1</button>
+          <br/>
+          <button type="button" ref={ref2}>box2</button>
+          <p>counter: {counter}</p>
+        </div>
+      )
+    }
+  }
+</Playground>
