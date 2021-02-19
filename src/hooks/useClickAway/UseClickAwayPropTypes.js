@@ -5,7 +5,7 @@ const UseClickAwayPropTypes = () => <div></div>
 
 UseClickAwayPropTypes.propTypes = {
   onClickAway: t.func,
-  target: t.oneOf(['element', 'React useRef result', 'a func return element', 'a array of previous element']),
+  target: t.oneOf([t.element, t.shape({ current: t.element }), t.func, t.arrayOf(t.element, t.func)]),
   eventName: t.string,
 }
 
