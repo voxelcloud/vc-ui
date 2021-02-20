@@ -1,0 +1,53 @@
+--- 
+name: usePreviousProps
+route: /vc-ui/usePreviousProps
+menu: '业务组件'
+--- 
+
+import { Playground, Props } from 'docz'
+import { useState, useRef } from 'react'
+import usePreviousProps  from './index';
+import Child from './Child'
+
+# usePreviousProps
+
+
+## Basic usage
+
+  保存的上个effect生命周期里的值
+
+``` JS
+import usePreviousProps from './index'
+const Child = ({ value }) => {
+  const previousValue = usePreviousProps(value)
+  if (previousValue !== value) {
+    console.log('changed')
+  } else {
+    console.log('not changed')
+  }
+  return (
+    <div>
+      <p>previous: {JSON.stringify(previousValue)}</p>
+      <p>current: {JSON.stringify(value)}</p>
+    </div>
+  )
+}
+```
+
+<Playground>
+  {
+    () => {
+      const [text, setText] = useState('')
+      const [value, setValue] = useState('')
+      return (
+        <div>
+          <input onInput={e => setText(e.target.value)} />
+          <button type='button' onClick={() => setValue(text)}>confirm</button>
+          <Child value={value}/>
+        </div>
+      )
+    }
+  }
+</Playground>
+
+
