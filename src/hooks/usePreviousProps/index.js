@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 const usePreviousProps = (value) => {
-  const ref = React.useRef()
+  const ref = React.useRef({})
   React.useEffect(() => {
     ref.current = value
   })

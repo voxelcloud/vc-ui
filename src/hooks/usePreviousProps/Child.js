@@ -2,17 +2,17 @@
 import * as React from 'react'
 import usePreviousProps from './index'
 
-const Child = ({ value }) => {
-  const previousValue = usePreviousProps(value)
-  if (previousValue !== value) {
+const Child = (props) => {
+  const previousProps = usePreviousProps(props)
+  if (previousProps.value !== props.value) {
     console.log('changed')
   } else {
     console.log('not changed')
   }
   return (
     <div>
-      <p>previous: {JSON.stringify(previousValue)}</p>
-      <p>current: {JSON.stringify(value)}</p>
+      <p>previous: {JSON.stringify(previousProps)}</p>
+      <p>current: {JSON.stringify(props)}</p>
     </div>
   )
 }
