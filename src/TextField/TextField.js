@@ -126,6 +126,7 @@ const TextField = React.forwardRef(function TextField({
       ref={ref}
       select={isSelect}
       value={value}
+      disabled={disabled}
       SelectProps={selectProps}
       InputProps={InputProps}
       inputRef={inputRef}
