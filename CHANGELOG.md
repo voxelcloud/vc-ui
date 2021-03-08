@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.12](https://github.com/voxelcloud/vc-ui/compare/v0.0.11...v0.0.12) (2021-03-08)
+
+
+### Features
+
+* **hooks:** add useClickAway hook ([73b0113](https://github.com/voxelcloud/vc-ui/commit/73b01135a61af476034b2faa71a2daf71bbbd9d0))
+
 ### [0.0.11](https://github.com/voxelcloud/vc-ui/compare/v0.0.10...v0.0.11) (2021-02-05)
 
 
