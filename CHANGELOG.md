@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.13](https://github.com/voxelcloud/vc-ui/compare/v0.0.12...v0.0.13) (2021-03-09)
+
+
+### Features
+
+* **hooks:** add useSignedCounter hook ([5b03d6c](https://github.com/voxelcloud/vc-ui/commit/5b03d6ca3977ca395a69ad4f01ef4b9753f1ae81))
+
 ### [0.0.12](https://github.com/voxelcloud/vc-ui/compare/v0.0.11...v0.0.12) (2021-03-08)
 
 
