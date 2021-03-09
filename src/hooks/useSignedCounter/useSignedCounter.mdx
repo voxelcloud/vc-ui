@@ -1,0 +1,53 @@
+--- 
+name: useSignedCounter
+route: /vc-ui/useSignedCounter
+menu: '业务组件'
+--- 
+
+import { Playground, Props } from 'docz'
+import { useState, useRef } from 'react'
+import useSignedCounter  from './index';
+
+# useSignedCounter
+
+## Basic usage
+
+  顾名思义，被标记的计数器。该hook可用在以下的场景：
+
+  某个请求会被触发多次，但是需要显示最后一次请求的结果。
+  由于异步请求的返回时间不能保证顺序，所以需要每次请求做个标记，只有最近一次的请求才可以作为最终正确结果。
+  
+``` js
+import { useSignedCounter } from 'vc-ui'
+      
+```
+
+<Playground>
+  {
+    () => {
+      const [countRef, updateCount] = useSignedCounter()
+      const fetchData = React.useCallback(() => {
+        updateCount()
+        const id = countRef.current
+        console.log('异步请求')
+        setTimeout(() => {
+          console.log('id ?== countRef.current', id, countRef.current, id === countRef.current)
+        }, 300)
+      }, [countRef, updateCount])
+      const handleClick = React.useCallback(() => {
+        fetchData()
+      }, [fetchData])
+      return (
+        <div>
+           <button onClick={handleClick}>click</button>
+        </div>
+      )
+    }
+  }
+</Playground>
+
+
+
+
+     
+ 

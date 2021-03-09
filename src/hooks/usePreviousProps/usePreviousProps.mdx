@@ -15,8 +15,9 @@ import Child from './Child'
 
   保存的上个effect生命周期里的props
 
-``` JS
-import usePreviousProps from './index'
+``` js
+import { usePreviousProps } from 'vc-ui'
+
 const Child = ({ value }) => {
   const previousProps = usePreviousProps(props)
   if (previousProps.value !== props.value) {
