@@ -1,0 +1,58 @@
+--- 
+name: useEventCallback
+route: /vc-ui/useEventCallback
+menu: '业务组件'
+--- 
+
+import { Playground, Props } from 'docz'
+import { useState, useRef } from 'react'
+import useEventCallback  from './index';
+import Button from './Button'
+
+# useEventCallback
+
+## Basic usage
+
+  与useCallback这样的hook不同， 即使依赖发生变化，也不会导致函数的引用地址发生变化。
+  在子组件的hander属性被useEventCallback处理后的场景下，可以显著减少子组件的重渲染次数。
+  
+``` JS
+import useEventCallback from './index'
+
+const Button = ({ onClick, children }) => {
+  console.log('render Button: ', children)
+  return (
+    <button onClick={onClick}>{children}</button>
+  )
+}
+      
+```
+
+<Playground>
+  {
+    () => {
+      const [value, setValue] = useState('');
+      const handleClick1 = React.useCallback(() => {
+        console.log('click useCallback', value)
+      }, [value]);
+      const handleClick2 = useEventCallback(() => {
+        console.log('click useEventCallback', value)
+      }, [value]);
+      return (
+        <div>
+          <input value={value} onChange={(e) => setValue(e.target.value)}></input>
+          <div>
+            <Button onClick={handleClick1}>click useCallback</Button><br/>
+            <Button onClick={handleClick2}>click useEventCallback</Button>
+          </div>
+        </div>
+      )
+    }
+  }
+</Playground>
+
+
+
+
+     
+ 
