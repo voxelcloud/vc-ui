@@ -16,8 +16,8 @@ import Button from './Button'
   与useCallback这样的hook不同， 即使依赖发生变化，也不会导致函数的引用地址发生变化。
   在子组件的hander属性被useEventCallback处理后的场景下，可以显著减少子组件的重渲染次数。
   
-``` JS
-import useEventCallback from './index'
+``` js
+import { useEventCallback } from 'vc-ui'
 
 const Button = ({ onClick, children }) => {
   console.log('render Button: ', children)
