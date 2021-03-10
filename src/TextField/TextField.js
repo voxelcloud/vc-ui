@@ -61,7 +61,7 @@ const useTextFieldStyles = makeStyles({
 })
 
 const TextField = React.forwardRef(function TextField({
-  type, classes, children, readonly, disabled, multiline, value, onChange, ...otherProps
+  name, type, classes, children, readonly, disabled, multiline, value, onChange, ...otherProps
 }, ref) {
 
   const theme = useTheme()
@@ -75,8 +75,11 @@ const TextField = React.forwardRef(function TextField({
   }
 
   const onClear = (e) => {
-    e.target.value = ''
-    onChange(e)
+    // todo: shall this target be replaced by the input?
+    const evt = { ...e, target: { ...e.target } }
+    evt.target.name = name
+    evt.target.value = ''
+    onChange(evt)
     inputRef.current.focus()
   }
 
@@ -132,6 +135,7 @@ const TextField = React.forwardRef(function TextField({
       inputRef={inputRef}
       margin="normal"
       {...otherProps}
+      name={name}
       onChange={onChange}
     >
       {children}
@@ -146,6 +150,7 @@ TextField.propTypes = {
   readonly: t.bool,
   disabled: t.bool,
   multiline: t.bool,
+  name: t.string,
   value: t.any,
   onChange: t.func,
 }
