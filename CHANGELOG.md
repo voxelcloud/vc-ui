@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.14](https://github.com/voxelcloud/vc-ui/compare/v0.0.13...v0.0.14) (2021-03-10)
+
+
+### Features
+
+* **textfield:** passing name to clear button in TextField ([844507b](https://github.com/voxelcloud/vc-ui/commit/844507bf59f45f300ea7807080c73ace0342689e))
+
 ### [0.0.13](https://github.com/voxelcloud/vc-ui/compare/v0.0.12...v0.0.13) (2021-03-09)
 
 
