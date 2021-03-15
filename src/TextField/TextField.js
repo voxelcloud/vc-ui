@@ -88,13 +88,7 @@ const TextField = React.forwardRef(function TextField({
   }
 
   const isSelect = type === TEXT_FIELD_TYPE.SELECT
-  if (isSelect) {
-    selectProps = {
-      MenuProps: {
-        className: 'select-menu',
-      },
-    }
-  }
+
   if ([TEXT_FIELD_TYPE.TEXT, TEXT_FIELD_TYPE.NUMBER].includes(type) && !disabled && !readonly) {
     InputProps.endAdornment = (
       <InputAdornment className="input-clear" position="end">
@@ -130,7 +124,6 @@ const TextField = React.forwardRef(function TextField({
       select={isSelect}
       value={value}
       disabled={disabled}
-      SelectProps={selectProps}
       InputProps={InputProps}
       inputRef={inputRef}
       margin="normal"
