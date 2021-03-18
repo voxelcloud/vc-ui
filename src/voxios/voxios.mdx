@@ -48,15 +48,7 @@ import { Voxios,  primaryVoxios,  primaryVoxiosRequest, } from 'vc-ui'
           };
           return { ...config, onSuccess };
         }).getInstance();
-        const options = { 
-          url,
-          params: { id: 66 },
-          data: { name: [1, 2, 3] },
-          config: {
-            transformHeaders: headers => ({ ...headers, testB: 12345 }),
-            throwErrorMessage: true,
-          },
-        };
+        const options = { url, params: { id: 66 } };
         updatedRequest(options).then((res) => {
           setResult(res.data)
         }).catch((err) => {
@@ -80,7 +72,7 @@ import { Voxios,  primaryVoxios,  primaryVoxiosRequest, } from 'vc-ui'
           params: { id: 66 },
           data: { name: [1, 2, 3] },
           config: {
-            transformHeaders: headers => ({ ...headers, testB: 12345 }),
+            transformHeaders: headers => ({ ...headers, 'test-c': 67890 }),
             throwErrorMessage: true,
           },
         };
