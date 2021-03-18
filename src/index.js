@@ -2,6 +2,14 @@
 export * as utils from './utils'
 export * from './utils'
 
+// voxios
+export * as voxios from './voxios'
+export {
+  Voxios,
+  primaryVoxios,
+  primaryVoxiosRequest
+} from './voxios'
+
 // hooks
 export * as hooks from './hooks'
 export * from './hooks'
