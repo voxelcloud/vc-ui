@@ -1,0 +1,110 @@
+--- 
+name: voxios
+route: /vc-ui/voxios
+menu: '公共工具'
+--- 
+
+import { Playground, Props } from 'docz'
+import { useState } from 'react'
+import { Voxios,  primaryVoxios,  primaryVoxiosRequest } from './index'
+
+
+
+# voxios
+
+## Basic usage
+
+  基于axios封装的一个http请求库。
+
+  
+``` js
+import { Voxios,  primaryVoxios,  primaryVoxiosRequest, } from 'vc-ui'
+      
+```
+
+<Playground>
+  {
+    () => {
+      const [result, setResult] = useState('')
+      const url = 'https://yapi.voxelcloud.net.cn/mock/:id/api/auth/users';
+      const handleClickA = () => {
+        const options = { url, params: { id: 66 }, config: { throwErrorMessage: true} };
+        primaryVoxiosRequest(options).then((res) => {
+          console.log('voxios result:', res);
+          setResult(res.data)
+        }).catch((err) => {
+          console.log('voxios error:', err);
+          setResult(err)
+        });
+      }
+      const handleClickB = () => {
+        const updatedRequest = primaryVoxios
+        .updateConfig((config) => {
+          const onSuccess = (res) => {
+            if (res && res.data) {
+              res.data = 'hello, world!';
+            }
+            return res;
+          };
+          return { ...config, onSuccess };
+        }).getInstance();
+        const options = { 
+          url,
+          params: { id: 66 },
+          data: { name: [1, 2, 3] },
+          config: {
+            transformHeaders: headers => ({ ...headers, testB: 12345 }),
+            throwErrorMessage: true,
+          },
+        };
+        updatedRequest(options).then((res) => {
+          setResult(res.data)
+        }).catch((err) => {
+          console.log('err', err);
+          setResult(err)
+        });
+      }
+      const handleClickC = () => {
+        const customRequest = new Voxios()
+        .updateConfig((config) => {
+          const onSuccess = (res) => {
+            if (res && res.data) {
+              res.data = 'custom voxios request';
+            }
+            return res;
+          };
+          return { ...config, onSuccess };
+        }).getInstance();
+        const options = { 
+          url,
+          params: { id: 66 },
+          data: { name: [1, 2, 3] },
+          config: {
+            transformHeaders: headers => ({ ...headers, testB: 12345 }),
+            throwErrorMessage: true,
+          },
+        };
+        customRequest(options).then((res) => {
+          setResult(res.data)
+        }).catch((err) => {
+          console.log('err', err);
+          setResult(err)
+        });
+      }
+      return (
+        <div>
+          <p>result: {JSON.stringify(result)}</p>
+          <button onClick={handleClickA}>默认配置</button><br/>
+          <button onClick={handleClickB}>更改默认配置</button><br/>
+          <button onClick={handleClickC}>自定义配置</button><br/>
+        </div>
+      )
+    }
+  }
+</Playground>
+
+
+
+
+     
+ 

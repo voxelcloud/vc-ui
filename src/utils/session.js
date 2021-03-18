@@ -1,6 +1,6 @@
 // session 管理
 
-import { storage } from './storage'
+import { getStorage } from './storage'
 
 const DEFAULT_TOKEN = 'token'
 const DEFAULT_AUTH_HEADER = 'token'
@@ -33,32 +33,38 @@ class Session {
   }
 
   saveToken(data) {
+    const storage = getStorage()
     const key = this.token
     storage.save(key, data)
   }
 
   getToken() {
+    const storage = getStorage()
     const key = this.token
     const res = storage.get(key)
     return res === null ? '' : res
   }
 
   removeToken() {
+    const storage = getStorage()
     const key = this.token
     storage.remove(key)
   }
 
   saveUserId(data) {
+    const storage = getStorage()
     const key = this.userId
     storage.save(key, data)
   }
 
   removeUserId() {
+    const storage = getStorage()
     const key = this.userId
     storage.remove(key)
   }
 
   getUserId() {
+    const storage = getStorage()
     const key = this.userId
     const res = storage.get(key)
     return res === null ? '' : res

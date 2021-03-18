@@ -7,8 +7,6 @@ function create(instanceConfig, context) {
 }
 
 class Voxios {
-  static create = () => new Voxios()
-
   static configMap = {
     primary: {},
     secondary: {},

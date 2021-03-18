@@ -10,7 +10,7 @@ export const localStorage = {
     return window.localStorage.removeItem(key)
   },
   canSupport() {
-    return typeof window.localStorage === 'object'
+    return window && typeof window.localStorage === 'object'
   }
 }
 
@@ -25,9 +25,10 @@ export const sessionStorage = {
     return window.sessionStorage.removeItem(key)
   },
   canSupport() {
-    return typeof window.sessionStorage === 'object'
+    return window && typeof window.sessionStorage === 'object'
   }
 }
+
 const global = {}
 export const globalStorage = {
   save: function (key, value) {
@@ -39,18 +40,17 @@ export const globalStorage = {
   remove: function (key) {
     return delete global[key]
   },
-  canSupport() {
-    return true
-  },
   getState: function () {
     return global
   },
+  canSupport() {
+    return true
+  },
 }
 
-export const storage = [localStorage, sessionStorage, globalStorage].find(v => {
-  return v.canSupport()
-})
+export const getStorage = () => {
+  return [localStorage, sessionStorage, globalStorage].find(v => {
+    return typeof v.canSupport === 'function' && v.canSupport()
+  })
+}
 
-// export {
-//   storage
-// }
