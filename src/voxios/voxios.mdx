@@ -6,8 +6,8 @@ menu: '公共工具'
 
 import { Playground, Props } from 'docz'
 import { useState } from 'react'
-import { Voxios,  primaryVoxios,  primaryVoxiosRequest } from './index'
-
+import { Voxios, defaultConfig } from './index'
+import defaultVoxios from './defaultVoxios'
 
 
 # voxios
@@ -16,84 +16,157 @@ import { Voxios,  primaryVoxios,  primaryVoxiosRequest } from './index'
 
   基于axios封装的一个http请求库。
 
+  使用默认配置可以开箱即用，同时支持自定义配置，能满足不同平台的特异性需求。
   
 ``` js
-import { Voxios,  primaryVoxios,  primaryVoxiosRequest, } from 'vc-ui'
+import { Voxios, voxiosDefaultConfig as defaultConfig} from 'vc-ui'
+
+// 方式一 全局注册配置
+Voxios.registerConfig('default', defaultConfig)
+const defaultVoxios = new Voxios().useConfig('default')
+const defaultRequest = defaultVoxios.getInstance()
+
+// 方式二 类实例注册配置
+const defaultRequest = new Voxios().registerConfig('default', defaultConfig).useConfig('default').getInstance()
+
+// 方式三 注册自定义配置
+const customConfig = { onSuccess: () => { } }
+const customRequest = new Voxios().registerConfig('custom', customConfig).useConfig('custom').getInstance()
+
+// 方式四 直接使用自定义配置
+const customConfig = { onSuccess: () => { } }
+const customRequest = new Voxios().useConfig(customConfig).getInstance()
+
+// 补充案例一 添加和调用自定义模块，例如: logout
+const customRequest = new Voxios()
+    .addModule('logout', () => {
+      console.log('--- logout ---')
+    })
+    .updateConfig((config) => {
+      const onSuccess = (res, context) => {
+        // ...
+        const logout = context.getModule('logout')
+        typeof logout === 'function' && logout()
+        // ...
+      };
+      return { ...config, onSuccess };
+    }).getInstance();
       
 ```
+
+#### 默认配置
 
 <Playground>
   {
     () => {
-      const [result, setResult] = useState('')
       const url = 'https://yapi.voxelcloud.net.cn/mock/:id/api/auth/users';
-      const handleClickA = () => {
+      const [result, setResult] = useState('')
+      const defaultRequest = defaultVoxios.getInstance()
+      const handleClick = () => {
         const options = { url, params: { id: 66 }, config: { throwErrorMessage: true} };
-        primaryVoxiosRequest(options).then((res) => {
-          console.log('voxios result:', res);
+        defaultRequest(options).then((res) => {
           setResult(res.data)
         }).catch((err) => {
-          console.log('voxios error:', err);
           setResult(err)
         });
       }
-      const handleClickB = () => {
-        const updatedRequest = primaryVoxios
+      return (
+        <div>
+          <pre>result: {JSON.stringify(result, null, 2)}</pre>
+          <button onClick={handleClick}>默认配置</button><br/>
+        </div>
+      )
+    }
+  }
+</Playground>
+
+#### 更改默认配置
+
+<Playground>
+  {
+    () => {
+      const url = 'https://yapi.voxelcloud.net.cn/mock/:id/api/auth/users';
+      const [result, setResult] = useState('')
+      const defaultVoxios = new Voxios().registerConfig('default', defaultConfig).useConfig('default')
+      const updatedRequest = defaultVoxios
         .updateConfig((config) => {
           const onSuccess = (res) => {
-            if (res && res.data) {
-              res.data = 'hello, world!';
-            }
-            return res;
+            res.data = 'hello, world!'
+            return res
           };
-          return { ...config, onSuccess };
-        }).getInstance();
+          return { ...config, onSuccess }
+        }).getInstance()
+      const handleClick = () => {
         const options = { url, params: { id: 66 } };
         updatedRequest(options).then((res) => {
           setResult(res.data)
         }).catch((err) => {
-          console.log('err', err);
           setResult(err)
-        });
+        })
       }
-      const handleClickC = () => {
-        const customRequest = new Voxios()
+      return (
+        <div>
+          <pre>result: {JSON.stringify(result, null, 10)}</pre>
+          <button onClick={handleClick}>更改默认配置</button><br/>
+        </div>
+      )
+    }
+  }
+</Playground>
+
+#### 自定义配置
+
+<Playground>
+  {
+    () => {
+      const url = 'https://yapi.voxelcloud.net.cn/mock/:id/api/auth/users';
+      const [result, setResult] = useState('')
+      const customRequest = new Voxios()
+        .addModule('logout', () => {
+          console.log('--- logout ---')
+        })
+        .setConfig({
+          addAuthHeader: () => ({ token: 'hello' }),
+        })
         .updateConfig((config) => {
-          const onSuccess = (res) => {
-            if (res && res.data) {
-              res.data = 'custom voxios request';
+          const onSuccess = (res, context) => {
+            res.data = 'custom voxios request'
+            if (Math.random() > 0.5) {
+              const logout = context.getModule('logout')
+              typeof logout === 'function' && logout()
+            } else {
+              console.log('should not to logout')
             }
             return res;
           };
           return { ...config, onSuccess };
         }).getInstance();
+      const handleClick = () => {
         const options = { 
           url,
           params: { id: 66 },
           data: { name: [1, 2, 3] },
           config: {
-            transformHeaders: headers => ({ ...headers, 'test-c': 67890 }),
+            transformHeaders: headers => ({ ...headers, 'mock-token': 12345 }),
             throwErrorMessage: true,
           },
         };
         customRequest(options).then((res) => {
           setResult(res.data)
         }).catch((err) => {
-          console.log('err', err);
           setResult(err)
         });
       }
       return (
         <div>
-          <p>result: {JSON.stringify(result)}</p>
-          <button onClick={handleClickA}>默认配置</button><br/>
-          <button onClick={handleClickB}>更改默认配置</button><br/>
-          <button onClick={handleClickC}>自定义配置</button><br/>
+          <pre>result: {JSON.stringify(result, null, 10)}</pre>
+          <button onClick={handleClick}>自定义配置</button><br/>
         </div>
       )
     }
   }
 </Playground>
+
 
 
 

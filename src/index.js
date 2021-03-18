@@ -6,8 +6,7 @@ export * from './utils'
 export * as voxios from './voxios'
 export {
   Voxios,
-  primaryVoxios,
-  primaryVoxiosRequest
+  defaultConfig as voxiosDefaultConfig
 } from './voxios'
 
 // hooks
