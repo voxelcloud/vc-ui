@@ -1,6 +1,6 @@
 import * as qs from 'qs'
 import message from '../message'
-import { session } from '../utils/session'
+import { Session } from '../utils/session'
 
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
@@ -45,12 +45,12 @@ const isTokenInvalid = code => [
 ].includes(code)
 
 const defaultLogout = () => {
-  session.clearSession()
+  new Session().clearSession()
   window.location.href = '/login'
 }
 
 const defaultConfig = {
-  addAuthHeader: () => ({ ...session.getAuthHeader() }),
+  addAuthHeader: () => ({ ...new Session().getAuthHeader() }),
   transformHeaders: headers => headers,
   axiosConfig: {
     paramsSerializer: params => qs.stringify(params, { arrayFormat: 'repeat' }),

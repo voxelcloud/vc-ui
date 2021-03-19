@@ -8,9 +8,11 @@ export const transformAxiosOptions = (options = {}, config = {}) => {
     data,
     params,
     headers,
+    axiosConfig: axiosConfigFromOptions,
     ...restOptions
   } = options
-  const { axiosConfig = {} } = config
+  const { axiosConfig: axiosConfigFromConfig } = config
+  const finalAxiosConfig = { ...axiosConfigFromConfig, ...axiosConfigFromOptions }
   let newUrl = url
   try {
     let domain = ''
@@ -37,12 +39,12 @@ export const transformAxiosOptions = (options = {}, config = {}) => {
   return {
     url: newUrl,
     ...newOptions,
-    ...axiosConfig,
+    ...finalAxiosConfig,
   }
 }
 
 export const request = (options = {}, config = {}, context) => {
-  // console.log('request option config', options, config);
+  console.log('request option config', options, config)
   const { onSuccess, onError } = config
   context.options = options
   context.config = config

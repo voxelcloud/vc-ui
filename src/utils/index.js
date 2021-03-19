@@ -5,5 +5,5 @@ export { default as throttle } from './throttle'
 export { default as isEmpty } from './isEmpty'
 
 export { sessionStorage, localStorage, globalStorage, getStorage } from './storage'
-export { Session, session } from './session'
+export { Session } from './session'
 

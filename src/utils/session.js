@@ -82,9 +82,6 @@ class Session {
   }
 }
 
-const session = new Session()
-
 export {
   Session,
-  session,
 }
