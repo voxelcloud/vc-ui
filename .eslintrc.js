@@ -44,6 +44,7 @@ module.exports = {
     expect: true,
     module: false,
     require: false,
+    window: false,
     __dirname: false,
     __DEV__: false,
     __NODE_ENV__: false,
