@@ -4,6 +4,7 @@ export { default as debounce } from './debounce'
 export { default as throttle } from './throttle'
 export { default as isEmpty } from './isEmpty'
 export { default as groupBy } from './groupBy'
+export { default as copyToClipboard } from './copyToClipboard'
 
 export { objectCaseConverter, camelToUnderscore, underscoreToCamel } from './objectCaseConverter'
 export { objectTool, objectGet, objectSet } from './objectTool'
