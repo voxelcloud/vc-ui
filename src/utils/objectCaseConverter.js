@@ -52,5 +52,3 @@ export const objectCaseConverter = {
     return objectCaseConvert(object, option, camelToUnderscore)
   }
 }
-
-window.utils = objectCaseConverter

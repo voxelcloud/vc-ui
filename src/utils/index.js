@@ -3,6 +3,7 @@ export { default as isPlainObject } from './isPlainObject'
 export { default as debounce } from './debounce'
 export { default as throttle } from './throttle'
 export { default as isEmpty } from './isEmpty'
+export { default as cloneDeep } from './cloneDeep'
 export { default as groupBy } from './groupBy'
 export { default as copyToClipboard } from './copyToClipboard'
 

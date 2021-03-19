@@ -75,6 +75,8 @@ const defaultConfig = {
     const error = {
       code: data[ERROR_CODE],
       message: data.message || data.msg || data.errmsg,
+      data,
+      origin: res
     }
     return Promise.reject(error)
   },
