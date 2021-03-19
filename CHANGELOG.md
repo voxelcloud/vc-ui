@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.17](https://github.com/voxelcloud/vc-ui/compare/v0.0.7...v0.0.17) (2021-03-19)
+
+
+### Features
+
+* util ([5b2e537](https://github.com/voxelcloud/vc-ui/commit/5b2e537f8556f5573450c3243066c6a50dee7984))
+* util ([a6e904b](https://github.com/voxelcloud/vc-ui/commit/a6e904b26dcfeaac07b39756cab468f0e7433ae5))
+* **hooks:** add useClickAway hook ([73b0113](https://github.com/voxelcloud/vc-ui/commit/73b01135a61af476034b2faa71a2daf71bbbd9d0))
+* **hooks:** add useSignedCounter hook ([5b03d6c](https://github.com/voxelcloud/vc-ui/commit/5b03d6ca3977ca395a69ad4f01ef4b9753f1ae81))
+* **util:** add common util ([9b4255d](https://github.com/voxelcloud/vc-ui/commit/9b4255d23909a97700415500ccd25a888a60d084))
+* add type props in message ([424b41d](https://github.com/voxelcloud/vc-ui/commit/424b41d00da6cdb8ca07b21daf01a890bdf8621f))
+* add useEventCallback hook ([acdb9ff](https://github.com/voxelcloud/vc-ui/commit/acdb9ff24da4f80a6c4c14004829c58918625603))
+* add voxios util ([b01d719](https://github.com/voxelcloud/vc-ui/commit/b01d7194bb977fc33f6f7cecbdd73c99b83eb847))
+* **textfield:** passing name to clear button in TextField ([844507b](https://github.com/voxelcloud/vc-ui/commit/844507bf59f45f300ea7807080c73ace0342689e))
+* add isNewInstance props in message ([af8f269](https://github.com/voxelcloud/vc-ui/commit/af8f2691a82e2fd9d5671499c4382f5bd21a24c8))
+* adjust button min width ([c4341c9](https://github.com/voxelcloud/vc-ui/commit/c4341c96ba7a15432e35e5a36563b6248805aa7a))
+* modify logic of message ([e424924](https://github.com/voxelcloud/vc-ui/commit/e424924612df73b1c922b9fb42a62dc66c73d01d))
+* update iconfont and add iconMap ([acc0e83](https://github.com/voxelcloud/vc-ui/commit/acc0e83169b06527ac23142ebaab6a52f775a379))
+
+
+### Bug Fixes
+
+* destroy message error ([23f3ef6](https://github.com/voxelcloud/vc-ui/commit/23f3ef6ad06f625cac1ca17f19fcaf44408b9338))
+* icon component color ([47cc2b3](https://github.com/voxelcloud/vc-ui/commit/47cc2b3d98cce0dcfca1754fbd8475dbc46f13a5))
+* rename isSingleton ([c3bf3c6](https://github.com/voxelcloud/vc-ui/commit/c3bf3c65114a2cbd3fa9a4f689674c308f4b8680))
+* theme error ([b3cbb6a](https://github.com/voxelcloud/vc-ui/commit/b3cbb6a2ebe05853224d386b54fe53f00649245c))
+* voxios error handler ([3345f31](https://github.com/voxelcloud/vc-ui/commit/3345f3186c7e3ea2432ae69773237c3e6a7c0c48))
+
 ### [0.0.16](https://github.com/voxelcloud/vc-ui/compare/v0.0.15...v0.0.16) (2021-03-19)
 
 
