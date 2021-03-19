@@ -44,10 +44,8 @@ export const transformAxiosOptions = (options = {}, config = {}) => {
 }
 
 export const request = (options = {}, config = {}, context) => {
-  console.log('request option config', options, config)
+  // console.log('request option config', options, config, context)
   const { onSuccess, onError } = config
-  context.options = options
-  context.config = config
   return axios(options)
     .then((res) => {
       const { data = {}, status } = res
@@ -71,6 +69,8 @@ export const createInstance = (config = {}, context) => (options = {}) => {
   const mergedConfig = { ...config, ...options.config }
   const { onBeforeRequest, addAuthHeader, transformHeaders } = mergedConfig
   const axiosOptions = transformAxiosOptions(options, mergedConfig)
+  context.options = axiosOptions
+  context.config = mergedConfig
   if (typeof addAuthHeader === 'function') {
     axiosOptions.headers = { ...axiosOptions.headers, ...addAuthHeader(axiosOptions.headers) }
   }
@@ -78,7 +78,7 @@ export const createInstance = (config = {}, context) => (options = {}) => {
     axiosOptions.headers = transformHeaders(axiosOptions.headers)
   }
   if (typeof onBeforeRequest === 'function') {
-    onBeforeRequest(axiosOptions, mergedConfig)
+    onBeforeRequest(context)
   }
   return request(axiosOptions, mergedConfig, context)
 }

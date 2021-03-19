@@ -55,7 +55,7 @@ const defaultConfig = {
   axiosConfig: {
     paramsSerializer: params => qs.stringify(params, { arrayFormat: 'repeat' }),
   },
-  // eslint-disable-next-line no-unused-vars
+  // onBeforeRequest: (context) => { },
   onSuccess: (res, context) => {
     const { data = {} } = res
     if (isTokenInvalid(data[ERROR_CODE])) {

@@ -74,13 +74,16 @@ const config = {
     // headers转换器
     transformHeaders: () => {},
 
+    // axios请求执行前执行的钩子函数
+    onBeforeRequest: (context) => { }, // context为Voxios实例
+
     // 请求成功后执行的钩子函数
     onSuccess: (res, context) => {}, // context为Voxios实例
 
     // 请求失败后进入的钩子函数
     onError: (error, context) => {}, // context为Voxios实例
 
-    // axios本身支持的配置参数
+    // axios自身支持的配置参数
     axiosConfig: {}, 
 }
 
@@ -208,7 +211,7 @@ request(options).then((res) => {
       }
       return (
         <div>
-          <pre>result: {JSON.stringify(result, null, 10)}</pre>
+          <pre>result: {JSON.stringify(result, null, 2)}</pre>
           <button onClick={handleClick}>更改默认配置</button><br/>
         </div>
       )
@@ -224,11 +227,11 @@ request(options).then((res) => {
       const url = 'https://yapi.voxelcloud.net.cn/mock/:id/api/auth/users';
       const [result, setResult] = useState('')
       const customRequest = new Voxios()
-        .addModule('logout', () => {
-          console.log('--- logout ---')
-        })
         .setConfig({
           addAuthHeader: () => ({ token: 'hello' }),
+        })
+        .addModule('logout', () => {
+          console.log('--- logout ---')
         })
         .updateConfig((config) => {
           const onSuccess = (res, context) => {
@@ -268,7 +271,7 @@ request(options).then((res) => {
       }
       return (
         <div>
-          <pre>result: {JSON.stringify(result, null, 10)}</pre>
+          <pre>result: {JSON.stringify(result, null, 2)}</pre>
           <button onClick={handleClick}>自定义配置</button><br/>
         </div>
       )
