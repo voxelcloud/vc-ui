@@ -54,5 +54,6 @@ module.exports = {
     Uint8Array: false,
     Uint16Array: false,
     Uint8ClampedArray: false,
+    Map: false,
   }
 }
