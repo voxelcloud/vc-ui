@@ -4,12 +4,22 @@ import resolve from 'rollup-plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs'
 import babel from 'rollup-plugin-babel'
 import replace from 'rollup-plugin-replace'
+import json from 'rollup-plugin-json'
 
 export default {
   input: 'src/index.js',
   // external: ['react', 'react-dom', 'react-is'],
-  external: id => id.includes('@material-ui') || ['react', 'react-dom', 'react-is', 'clsx'].includes(id),
+  external: id => id.includes('@material-ui') || [
+    'react',
+    'react-dom',
+    'react-is',
+    'clsx',
+    'axios',
+    'path-to-regexp',
+    'qs'
+  ].includes(id),
   plugins: [
+    json(),
     alias({
       resolve: ['.js']
     }),
