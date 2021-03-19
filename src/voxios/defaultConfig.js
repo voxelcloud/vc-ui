@@ -86,7 +86,7 @@ const defaultConfig = {
     let messageText = ''
     if (typeof error === 'string') {
       messageText = '操作失败，请稍后重试！'
-    } else if (typeof error === 'object') {
+    } else if (typeof error === 'object' && error !== null) {
       const { response } = error
       if (response && response.status) {
         const errorText = codeMessage[response.status] || response.statusText

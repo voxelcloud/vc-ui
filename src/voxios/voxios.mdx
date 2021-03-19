@@ -164,15 +164,15 @@ request(options).then((res) => {
 <Playground>
   {
     () => {
-      const url = 'https://yapi.voxelcloud.net.cn/mock/:id/api/auth/users';
+      const url = 'https://yapi.voxelcloud.net.cn/mock/:id/api/platform/announcements';
       const [result, setResult] = useState('')
       const defaultRequest = defaultVoxios.getInstance()
       const handleClick = () => {
         const options = { url, params: { id: 66 }, config: { throwErrorMessage: true} };
         defaultRequest(options).then((res) => {
           setResult(res.data)
-        }).catch((err) => {
-          setResult(err)
+        }).catch(({code, message, data} = {}) => {
+          setResult({code, message, data})
         });
       }
       return (
