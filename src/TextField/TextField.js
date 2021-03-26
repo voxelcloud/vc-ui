@@ -69,18 +69,30 @@ const TextField = React.forwardRef(function TextField({
 
   const [isShowPwd, setIsShowPwd] = useState(false)
   const inputRef = useRef()
-  let selectProps = {}
   const InputProps = {
     readOnly: readonly,
   }
 
   const onClear = (e) => {
-    // todo: shall this target be replaced by the input?
-    const evt = { ...e, target: { ...e.target } }
-    evt.target.name = name
-    evt.target.value = ''
-    onChange(evt)
-    inputRef.current.focus()
+    const element = inputRef.current
+    if (!element) {
+      return
+    }
+    const handler = (e) => {
+      typeof onChange === 'function' && onChange(e)
+      element.focus()
+      element.removeEventListener('input', handler)
+    }
+    element.addEventListener('input', handler)
+    element.value = ''
+    element.dispatchEvent(new InputEvent('input'))
+
+    // 旧写法
+    // const evt = { ...e, target: { ...e.target } }
+    // evt.target.name = name
+    // evt.target.value = ''
+    // onChange(evt)
+    // inputRef.current.focus()
   }
 
   const changePwdVisible = () => {
@@ -150,7 +162,7 @@ TextField.propTypes = {
 
 TextField.defaultProps = {
   type: TEXT_FIELD_TYPE.TEXT,
-  onChange: () => {},
+  onChange: () => { },
 }
 
 TextField.displayName = 'VcTextField'
