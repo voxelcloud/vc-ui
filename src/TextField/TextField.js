@@ -1,5 +1,6 @@
 import React, { memo, useRef, useState } from 'react'
 import { useTheme, makeStyles } from '@material-ui/core/styles'
+import clsx from 'clsx'
 import t from 'prop-types'
 import MaTextField from '@material-ui/core/TextField'
 import InputAdornment from '@material-ui/core/InputAdornment'
@@ -57,11 +58,22 @@ const useTextFieldStyles = makeStyles({
         background: 'unset'
       },
     }
+  },
+  readOnlyRoot: {
+    // background: 'red',
+    '& .MuiInputBase-root': {
+      '&.MuiInput-underline:after': {
+        opacity: 0
+      },
+      '&.MuiInput-underline:before': {
+        opacity: 0
+      },
+    },
   }
 })
 
 const TextField = React.forwardRef(function TextField({
-  name, type, classes, children, readonly, disabled, multiline, value, onChange, ...otherProps
+  name, type, classes, children, readOnly, disabled, value, extraInputProps, onChange, ...otherProps
 }, ref) {
 
   const theme = useTheme()
@@ -70,29 +82,29 @@ const TextField = React.forwardRef(function TextField({
   const [isShowPwd, setIsShowPwd] = useState(false)
   const inputRef = useRef()
   const InputProps = {
-    readOnly: readonly,
+    readOnly: readOnly,
+    ...extraInputProps
   }
 
-  const onClear = (e) => {
+  const onClear = () => {
     const element = inputRef.current
     if (!element) {
       return
     }
-    const handler = (e) => {
-      typeof onChange === 'function' && onChange(e)
-      element.focus()
-      element.removeEventListener('input', handler)
-    }
-    element.addEventListener('input', handler)
-    element.value = ''
-    element.dispatchEvent(new InputEvent('input'))
+    // 写法一
+    const setValue = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set
+    setValue.call(element, '')
+    element.dispatchEvent(new Event('input', { bubbles: true }))
 
-    // 旧写法
-    // const evt = { ...e, target: { ...e.target } }
-    // evt.target.name = name
-    // evt.target.value = ''
-    // onChange(evt)
-    // inputRef.current.focus()
+    // 写法二
+    // const handler = (e) => {
+    //   typeof onChange === 'function' && onChange(e)
+    //   element.focus()
+    //   element.removeEventListener('input', handler)
+    // }
+    // element.addEventListener('input', handler)
+    // element.value = ''
+    // element.dispatchEvent(new Event('input'))
   }
 
   const changePwdVisible = () => {
@@ -101,7 +113,7 @@ const TextField = React.forwardRef(function TextField({
 
   const isSelect = type === TEXT_FIELD_TYPE.SELECT
 
-  if ([TEXT_FIELD_TYPE.TEXT, TEXT_FIELD_TYPE.NUMBER].includes(type) && !disabled && !readonly) {
+  if ([TEXT_FIELD_TYPE.TEXT, TEXT_FIELD_TYPE.NUMBER].includes(type) && !disabled && !readOnly) {
     InputProps.endAdornment = (
       <InputAdornment className="input-clear" position="end">
         <IconButton tabIndex="-1" onClick={onClear}>
@@ -125,12 +137,14 @@ const TextField = React.forwardRef(function TextField({
     )
   }
   const inputType = isSelect || (isPassword && isShowPwd) ? TEXT_FIELD_TYPE.TEXT : type
+
   return (
     <MaTextField
       classes={{
         root: customClasses.root,
         ...classes,
       }}
+      className={clsx(readOnly && customClasses.readOnlyRoot)}
       type={inputType}
       ref={ref}
       select={isSelect}
@@ -152,9 +166,9 @@ TextField.propTypes = {
   type: t.oneOf(['text', 'number', 'select', 'password']),
   classes: t.object,
   children: t.node,
-  readonly: t.bool,
+  readOnly: t.bool,
+  extraInputProps: t.object,
   disabled: t.bool,
-  multiline: t.bool,
   name: t.string,
   value: t.any,
   onChange: t.func,
