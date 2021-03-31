@@ -46,7 +46,7 @@ const Tab = forwardRef((props, ref) => {
 })
 
 Tab.propTypes = {
-  value: t.string,
+  value: t.any,
   label: t.node,
   disabled: t.bool,
   icon: t.element,

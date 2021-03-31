@@ -81,12 +81,13 @@ const Tabs = forwardRef((props, ref) => {
     }
     const { props: childProps } = child
     const childValue = childProps.value === undefined ? childIndex : childProps.value
+    const selected = value === childValue
     valueToIndex.set(childValue, childIndex)
     childIndex += 1
     const newProps = {
       ...childProps,
       value: childValue,
-      _selected: value === childProps.value,
+      _selected: selected,
       _handleSelect: handleChange,
     }
     return React.cloneElement(child, newProps, child.children)
