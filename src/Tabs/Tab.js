@@ -25,7 +25,7 @@ const useTabStyles = makeStyles(theme => ({
   disabled: {
     backgroundColor: 'transparent',
     color: '#999',
-    cursor: 'auto'
+    cursor: 'not-allowed'
   }
 }))
 

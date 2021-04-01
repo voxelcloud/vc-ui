@@ -30,8 +30,8 @@ const useIndicatorStyle = makeStyles(theme => ({
 const Indicator = React.memo(function Indicator(props) {
   const indicatorClasses = useIndicatorStyle()
   // eslint-disable-next-line react/prop-types
-  const { style } = props
-  return <div className={clsx(indicatorClasses.root)} style={style} />
+  const { style, className } = props
+  return <div className={clsx(indicatorClasses.root, className)} style={style} />
 })
 
 const Tabs = forwardRef((props, ref) => {
@@ -97,7 +97,7 @@ const Tabs = forwardRef((props, ref) => {
     <div className={clsx(tabClasses.containRoot)} ref={tabsListRef}>
       {childrenRender}
     </div>
-    <Indicator style={{...indicatorStyle}} />
+    <Indicator className={classes.indicator} style={{...indicatorStyle}} />
   </div>
 })
 
@@ -115,7 +115,8 @@ Tabs.propTypes = {
 Tabs.defaultProps = {
   value: '',
   classes: {
-    root: ''
+    root: '',
+    indicator: '',
   },
   className: '',
   onChange: () => {},
