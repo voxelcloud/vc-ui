@@ -1,0 +1,52 @@
+--- 
+name: Tabs
+route: /vc-ui/
+--- 
+
+import { Playground, Props } from 'docz' 
+import Tabs  from './';
+import Tab from './Tab';
+import Icon  from '../Icon';
+
+# Tabs
+## Tabs Props
+<Props of={Tabs} />
+
+# Tab
+## Tab Props
+<Props of={Tab} />
+
+## Basic usage 
+
+<Playground>
+  {() => {
+    const [curTab, changeTab] = React.useState('project');
+    const handleTabChange = (val, e) => {
+        changeTab(val)
+    };
+    return (
+        <Tabs value={curTab} onChange={handleTabChange}>
+            <Tab label="项目" value="project" /> 
+            <Tab label="用户" value="user" disabled /> 
+            <Tab label="机构" value="orgnization" /> 
+         </Tabs>
+    );
+  }}
+</Playground>
+
+## Tab with icon
+
+<Playground>
+  {() => {
+    const [curTab, changeTab] = React.useState('project');
+    const handleTabChange = (val, e) => {
+        changeTab(val)
+    };
+    return (
+        <Tabs value={curTab} onChange={handleTabChange} >
+            <Tab label="项目" icon={<Icon name="home" />} value="project" /> 
+            <Tab label="机构" icon={<Icon name="person" />} value="orgnization" /> 
+         </Tabs>
+    );
+  }}
+</Playground>
