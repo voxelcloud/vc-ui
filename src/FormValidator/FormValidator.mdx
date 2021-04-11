@@ -1,0 +1,68 @@
+--- 
+name: FormValidator
+route: /vc-ui/
+--- 
+
+import { Playground, Props } from 'docz' 
+import FormValidator  from './';
+import { makeStyles } from '@material-ui/core/styles'
+import TextField from '../TextField'
+
+
+# FormValidator 
+
+## Props
+
+<Props of={FormValidator} />
+
+## Basic usage 
+
+<Playground>
+  {
+    () => {
+      const meta = {
+        type: 'text',
+        label: '密码',
+        key: 'password',
+        required: true,
+        validator: [ 
+          {
+            text: '密码不能为空',
+            validate: value => ['', undefined, null].includes(value),
+          },
+          {
+            text: '密码长度不低于8位，需同时包含数字与英文字母！',
+            validate: value => !new RegExp(/^(?=.*[a-zA-Z])(?=.*\d)[^]{8,}$/).test(value),
+          }
+        ],
+      }
+      const [value, setValue] = React.useState('')
+      return (
+        <FormValidator 
+          rules={meta.validator}  
+          value={value} 
+          extra={{ data: value }}  
+          onChange={(key, value) => setValue(value)}>
+          {(onChange, error = {}) => {
+            const showError = error.showError && error.isError;
+            return (
+               <TextField
+                  type={meta.type}
+                  label={meta.label}
+                  value={value}
+                  name={meta.key}
+                  required={meta.required}
+                  error={showError}
+                  helperText={showError && error.helperText}
+                  onChange={(e) => {
+                    typeof onChange === 'function' && onChange(e.target.name, e.target.value);
+                  }}
+                />
+            )
+          }}
+        </FormValidator>
+      )
+    }
+  }
+</Playground>
+

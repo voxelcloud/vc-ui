@@ -3,7 +3,7 @@ import { useTheme, makeStyles } from '@material-ui/core/styles'
 import clsx from 'clsx'
 import t from 'prop-types'
 
-const useTabsStyles = makeStyles(theme => ({
+const useTabsStyles = makeStyles(() => ({
   root: {
     position: 'relative',
   },
