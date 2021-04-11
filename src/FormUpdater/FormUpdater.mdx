@@ -1,0 +1,67 @@
+--- 
+name: FormUpdater
+route: /vc-ui/
+--- 
+
+import { Playground, Props } from 'docz' 
+import FormUpdater  from './';
+import Button from '../Button'
+
+# FormUpdater 
+
+## Props
+
+<Props of={FormUpdater} />
+
+## Basic usage 
+
+<Playground>
+  {
+    () => {
+      const fields = [
+        {
+          type: 'text',
+          key: 'oldAccount',
+          label: '旧账号',
+          required: true,
+          rules: [
+            {
+              text: '旧账号不能为空',
+              validate: value => ['', undefined, null].includes(value),
+            }
+          ],
+          helperText: '',
+          margin: 'none',
+        }, {
+          type: 'text',
+          key: 'newAccount',
+          label: '新账号',
+          required: true,
+          rules: [
+            {
+              text: '新账号不能为空',
+              validate: value => ['', undefined, null].includes(value),
+            },  {
+              text: '新账号长度不得低于8位，需同时包含数字与英文字母！',
+              validate: value => !new RegExp(/^(?=.*[a-zA-Z])(?=.*\d)[^]{8,}$/).test(value),
+            }
+          ],
+          helperText: '新账号长度不得低于8位，需同时包含数字与英文字母！',
+          margin: 'none',
+        },
+      ]
+      return (
+        <FormUpdater
+          title='更改账号'
+          confirmText='确定'
+          initialValue={[{key: 'oldAccount', value: 'voxel-cloud'}]}
+          fields={fields}
+          onConfirm={(data) => {console.log('result:', data)}}
+        >
+          <Button variant="contained">更改账号</Button>
+        </FormUpdater>
+      )
+    }
+  }
+</Playground>
+
