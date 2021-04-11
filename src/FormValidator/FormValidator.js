@@ -4,7 +4,7 @@ import t from 'prop-types'
 const FormValidator = ({
   children, rules, force, value, extra, onChange,
 }) => {
-  const [showError, setShowError] = useState(false)
+  const [enabled, setEnabled] = useState(false)
 
   const findError = () => {
     if (Array.isArray(rules)) {
@@ -18,22 +18,26 @@ const FormValidator = ({
   }
 
   const error = findError()
+  const finalEnabled = force ? true : enabled
+  const isError = error ? true : false
+  const showError = finalEnabled && isError
+  const helperText =  showError && (error?.text || error?.helperText)
 
-  let childError = { showError: force ? true : showError }
-
-  if (error) {
-    childError = {
-      ...childError, isError: true, helperText: error?.text || error?.helperText, ...error,
-    }
+  let childError = {
+    ...error,
+    enabled: finalEnabled,
+    isError,
+    showError,
+    helperText,
   }
 
-  const handleChange = (e, ...restArgs) => {
-    setShowError(true)
+  const handleValidate = (e, ...restArgs) => {
+    setEnabled(true)
     typeof onChange === 'function' && onChange(e, ...restArgs)
   }
 
   if (typeof children === 'function') {
-    return children(handleChange, childError)
+    return children(handleValidate, childError)
   }
 
   return null
@@ -59,11 +63,10 @@ FormValidator.defaultProps = {
   rules: [], // 校验规则
   force: false, // 是否强制校验
   extra: {},
-  onChange: () => {},
+  onChange: () => { },
   value: undefined
 }
 
 FormValidator.displayName = 'VcFormValidator'
 
-// export default memo(FormValidator)
-export default FormValidator
+export default memo(FormValidator)

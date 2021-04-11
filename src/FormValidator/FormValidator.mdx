@@ -25,7 +25,7 @@ import TextField from '../TextField'
         label: '密码',
         key: 'password',
         required: true,
-        validator: [ 
+        rules: [
           {
             text: '密码不能为空',
             validate: value => ['', undefined, null].includes(value),
@@ -39,23 +39,23 @@ import TextField from '../TextField'
       const [value, setValue] = React.useState('')
       return (
         <FormValidator 
-          rules={meta.validator}  
+          rules={meta.rules}  
           value={value} 
-          extra={{ data: value }}  
-          onChange={(key, value) => setValue(value)}>
-          {(onChange, error = {}) => {
-            const showError = error.showError && error.isError;
+          extra={{ data: value }}
+        >
+          {(onValidate, error = {}) => {
             return (
                <TextField
                   type={meta.type}
                   label={meta.label}
-                  value={value}
                   name={meta.key}
+                  value={value}
                   required={meta.required}
-                  error={showError}
-                  helperText={showError && error.helperText}
+                  error={error.showError}
+                  helperText={error.helperText}
                   onChange={(e) => {
-                    typeof onChange === 'function' && onChange(e.target.name, e.target.value);
+                    typeof onValidate === 'function' && onValidate()
+                    setValue(e.target.value)
                   }}
                 />
             )
