@@ -60,7 +60,6 @@ const useTextFieldStyles = makeStyles({
     }
   },
   readOnlyRoot: {
-    // background: 'red',
     '& .MuiInputBase-root': {
       '&.MuiInput-underline:after': {
         opacity: 0
@@ -68,7 +67,14 @@ const useTextFieldStyles = makeStyles({
       '&.MuiInput-underline:before': {
         opacity: 0
       },
+      '& .MuiSelect-icon': {
+        opacity: 0
+      },
     },
+    '& .MuiFormLabel-root.Mui-focused': {
+      // color: 'inherit',
+      color: 'rgba(0, 0, 0, 0.54)'
+    }
   }
 })
 
