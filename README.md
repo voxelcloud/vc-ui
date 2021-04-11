@@ -1,4 +1,4 @@
-vc-ui
+VC-UI
 ========
 
 [![NPM package][npm]][npm-url]
