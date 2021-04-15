@@ -57,7 +57,12 @@ const useTextFieldStyles = makeStyles({
       '& .MuiSelect-root': {
         background: 'unset'
       },
-    }
+    },
+    '& .MuiFormHelperText-root': {
+      fontSize: '0.625rem',
+      lineHeight: '0.75rem',
+      color: '#00000042',
+    },
   },
   readOnlyRoot: {
     '& .MuiInputBase-root': {
