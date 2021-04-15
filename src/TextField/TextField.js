@@ -96,6 +96,7 @@ const TextField = React.forwardRef(function TextField({
     readOnly: readOnly,
     ...extraInputProps
   }
+  const defaultInputLabelProps = { shrink: true }
 
   const onClear = () => {
     const element = inputRef.current
@@ -165,6 +166,7 @@ const TextField = React.forwardRef(function TextField({
       inputRef={inputRef}
       margin="normal"
       {...otherProps}
+      InputLabelProps={{ ...defaultInputLabelProps, ...otherProps.InputLabelProps }}
       name={name}
       onChange={onChange}
     >
