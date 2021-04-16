@@ -57,7 +57,12 @@ const useTextFieldStyles = makeStyles({
       '& .MuiSelect-root': {
         background: 'unset'
       },
-    }
+    },
+    '& .MuiFormHelperText-root': {
+      fontSize: '0.625rem',
+      lineHeight: '0.75rem',
+      color: '#00000042',
+    },
   },
   readOnlyRoot: {
     '& .MuiInputBase-root': {
@@ -91,6 +96,7 @@ const TextField = React.forwardRef(function TextField({
     readOnly: readOnly,
     ...extraInputProps
   }
+  const defaultInputLabelProps = { shrink: true }
 
   const onClear = () => {
     const element = inputRef.current
@@ -160,6 +166,7 @@ const TextField = React.forwardRef(function TextField({
       inputRef={inputRef}
       margin="normal"
       {...otherProps}
+      InputLabelProps={{ ...defaultInputLabelProps, ...otherProps.InputLabelProps }}
       name={name}
       onChange={onChange}
     >

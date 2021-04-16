@@ -1,5 +1,5 @@
 const defaultConfig = {
-  throwErrorMessage: false,
+  throwErrorMessage: true,
 }
 
 export default defaultConfig
