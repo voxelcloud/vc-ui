@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.20](https://github.com/voxelcloud/vc-ui/compare/v0.0.18...v0.0.20) (2021-04-16)
+
+
+### Features
+
+* formUpdater component ([c6e8a64](https://github.com/voxelcloud/vc-ui/commit/c6e8a64c621dbd76480129438201719bce456884))
+* formValidator component ([b40d30d](https://github.com/voxelcloud/vc-ui/commit/b40d30d79a3fbf83bda2945886eadbf6398e0094))
+
+
+### Bug Fixes
+
+* tabs component fix width style ([d4ce7c5](https://github.com/voxelcloud/vc-ui/commit/d4ce7c5d8b4356aa6be55a9ffc3ed65454871273))
+* textField component fixed label shrink ([7f50eca](https://github.com/voxelcloud/vc-ui/commit/7f50eca3793a300abbcb630ac6fc18d11a8d65ae))
+* textField label color not change when focused in readOnly mode ([73df8cb](https://github.com/voxelcloud/vc-ui/commit/73df8cb92a67d263eeaa229fcfaa214f6fc8348d))
+
 ### [0.0.19](https://github.com/voxelcloud/vc-ui/compare/v0.0.17...v0.0.19) (2021-04-11)
 
 
