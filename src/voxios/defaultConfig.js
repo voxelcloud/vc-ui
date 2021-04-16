@@ -1,24 +1,23 @@
 import * as qs from 'qs'
-import message from '../message'
 import { Session } from '../utils/session'
 
-const codeMessage = {
-  200: '服务器成功返回请求的数据。',
-  201: '新建或修改数据成功。',
-  202: '一个请求已经进入后台排队（异步任务）。',
-  204: '删除数据成功。',
-  400: '发出的请求有错误，服务器没有进行新建或修改数据的操作。',
-  401: '用户没有权限（令牌、用户名、密码错误）。',
-  403: '用户得到授权，但是访问是被禁止的。',
-  404: '发出的请求针对的是不存在的记录，服务器没有进行操作。',
-  406: '请求的格式不可得。',
-  410: '请求的资源被永久删除，且不会再得到的。',
-  422: '当创建一个对象时，发生一个验证错误。',
-  500: '服务器发生错误，请检查服务器。',
-  502: '网关错误。',
-  503: '服务不可用，服务器暂时过载或维护。',
-  504: '网关超时。',
-}
+// const codeMessage = {
+//   200: '服务器成功返回请求的数据。',
+//   201: '新建或修改数据成功。',
+//   202: '一个请求已经进入后台排队（异步任务）。',
+//   204: '删除数据成功。',
+//   400: '发出的请求有错误，服务器没有进行新建或修改数据的操作。',
+//   401: '用户没有权限（令牌、用户名、密码错误）。',
+//   403: '用户得到授权，但是访问是被禁止的。',
+//   404: '发出的请求针对的是不存在的记录，服务器没有进行操作。',
+//   406: '请求的格式不可得。',
+//   410: '请求的资源被永久删除，且不会再得到的。',
+//   422: '当创建一个对象时，发生一个验证错误。',
+//   500: '服务器发生错误，请检查服务器。',
+//   502: '网关错误。',
+//   503: '服务不可用，服务器暂时过载或维护。',
+//   504: '网关超时。',
+// }
 
 // LACK_PARAM = -400000  缺少参数
 // INVALID_PARAM = -400001  参数不合法
@@ -59,6 +58,10 @@ const defaultConfig = {
   onSuccess: (res, context) => {
     const { data = {} } = res
     if (isTokenInvalid(data[ERROR_CODE])) {
+      // tokenInvalid钩子
+      const onTokenInvalid = context.getModule('onTokenInvalid')
+      typeof onTokenInvalid === 'function' && onTokenInvalid(res)
+      // 直接退出, 如果不想走该步骤，可以用一个空函数覆盖掉logout
       const logout = context.getModule('logout') || defaultLogout
       typeof logout === 'function' && logout(res)
       // eslint-disable-next-line no-console
@@ -89,25 +92,18 @@ const defaultConfig = {
     } else if (typeof error === 'object' && error !== null) {
       const { response } = error
       if (response && response.status) {
-        const errorText = codeMessage[response.status] || response.statusText
+        const errorText = response.statusText
         const { status, data } = response
         // eslint-disable-next-line no-console
-        console.error(`请求错误 ${status}: ${data.path}`, errorText)
+        console.error(`axios threw error detail: ${status} ${data.path}`, errorText, error)
       }
       messageText = '操作失败，请稍后重试!'
     }
     messageText = messageText || '您的网络发生异常，无法连接服务器'
     if (showErrorMessage) {
-      message.open({
-        type: 'warning',
-        noticeIconName: 'notificationWarning',
-        content: messageText,
-        style: {
-          bottom: '50px',
-          left: '50%',
-          transform: 'translateX(-50%)',
-        },
-      })
+      console.error('voxios threw http error detail: ', messageText, error)
+      const onThrowError = context.getModule('onThrowError')
+      typeof onThrowError === 'function' && onThrowError(error)
     }
   },
 }
