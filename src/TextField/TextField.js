@@ -62,6 +62,9 @@ const useTextFieldStyles = makeStyles({
       fontSize: '0.625rem',
       lineHeight: '0.75rem',
       color: '#00000042',
+      '&.Mui-error': {
+        color: theme => theme.palette.error.main,
+      },
     },
   },
   readOnlyRoot: {
@@ -89,14 +92,12 @@ const TextField = React.forwardRef(function TextField({
 
   const theme = useTheme()
   const customClasses = useTextFieldStyles(theme)
-
   const [isShowPwd, setIsShowPwd] = useState(false)
   const inputRef = useRef()
   const InputProps = {
     readOnly: readOnly,
     ...extraInputProps
   }
-  const defaultInputLabelProps = { shrink: true }
 
   const onClear = () => {
     const element = inputRef.current
@@ -136,6 +137,7 @@ const TextField = React.forwardRef(function TextField({
   }
 
   const isPassword = type === TEXT_FIELD_TYPE.PASSWORD
+
   if (isPassword) {
     InputProps.endAdornment = (
       <InputAdornment position="end">
@@ -148,6 +150,7 @@ const TextField = React.forwardRef(function TextField({
       </InputAdornment>
     )
   }
+
   const inputType = isSelect || (isPassword && isShowPwd) ? TEXT_FIELD_TYPE.TEXT : type
 
   return (
@@ -166,7 +169,6 @@ const TextField = React.forwardRef(function TextField({
       inputRef={inputRef}
       margin="normal"
       {...otherProps}
-      InputLabelProps={{ ...defaultInputLabelProps, ...otherProps.InputLabelProps }}
       name={name}
       onChange={onChange}
     >

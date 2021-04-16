@@ -31,17 +31,14 @@ import { Session } from '../utils/session'
 // TOKEN_EXPIRED = -400102  token已过期
 
 const INVALID_HTTP_CODE = {
-  INVALID_TOKEN: -400101,
-  TOKEN_EXPIRED: -400102,
+  INVALID_TOKEN: -301001,
+  TOKEN_EXPIRED: -301002,
 }
 
 const STATUS_CODE = 'status_code'
 const ERROR_CODE = 'error_code'
 
-const isTokenInvalid = code => [
-  INVALID_HTTP_CODE.INVALID_TOKEN,
-  INVALID_HTTP_CODE.TOKEN_EXPIRED,
-].includes(code)
+const isTokenInvalid = (code, invalidToken = []) => invalidToken.includes(code)
 
 const defaultLogout = () => {
   new Session().clearSession()
@@ -49,6 +46,10 @@ const defaultLogout = () => {
 }
 
 const defaultConfig = {
+  invalidToken: [
+    INVALID_HTTP_CODE.INVALID_TOKEN,
+    INVALID_HTTP_CODE.TOKEN_EXPIRED,
+  ],
   addAuthHeader: () => ({ ...new Session().getAuthHeader() }),
   transformHeaders: headers => headers,
   axiosConfig: {
@@ -56,8 +57,10 @@ const defaultConfig = {
   },
   // onBeforeRequest: (context) => { },
   onSuccess: (res, context) => {
+    const { options, config } = context
+    const invalidToken = options?.config?.invalidToken || config?.invalidToken
     const { data = {} } = res
-    if (isTokenInvalid(data[ERROR_CODE])) {
+    if (isTokenInvalid(data[ERROR_CODE], invalidToken)) {
       // tokenInvalid钩子
       const onTokenInvalid = context.getModule('onTokenInvalid')
       typeof onTokenInvalid === 'function' && onTokenInvalid(res)
