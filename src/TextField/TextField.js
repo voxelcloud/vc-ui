@@ -62,6 +62,9 @@ const useTextFieldStyles = makeStyles({
       fontSize: '0.625rem',
       lineHeight: '0.75rem',
       color: '#00000042',
+      '&.Mui-error': {
+        color: theme => theme.palette.error.main,
+      },
     },
   },
   readOnlyRoot: {
