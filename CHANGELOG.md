@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.22](https://github.com/voxelcloud/vc-ui/compare/v0.0.20...v0.0.22) (2021-04-19)
+
+
+### Bug Fixes
+
+* textField component label shrink error ([55e703e](https://github.com/voxelcloud/vc-ui/commit/55e703e01317ee9a7d8737dce4767ffc03f2a877))
+* voxios config add invalidToken ([416c3bb](https://github.com/voxelcloud/vc-ui/commit/416c3bbc13ba28b82e0bbaa19190f578ffbffe8c))
+* voxios normalize error ([7960f88](https://github.com/voxelcloud/vc-ui/commit/7960f88cd8b4e36e1531b99d00c58f305edf9a8b))
+
 ### [0.0.21](https://github.com/voxelcloud/vc-ui/compare/v0.0.19...v0.0.21) (2021-04-16)
 
 

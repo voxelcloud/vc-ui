@@ -43,16 +43,9 @@ export const transformAxiosOptions = (options = {}, config = {}) => {
   }
 }
 
-const transformError = (error) => {
-  if (typeof error === 'object' && error !== null) {
-    return error
-  }
-  return { message: error }
-}
-
 export const request = (options = {}, config = {}, context) => {
   // console.log('request option config', options, config, context)
-  const { onSuccess, onError } = config
+  const { onSuccess, onError, normalizeError } = config
   return axios(options)
     .then((res) => {
       const { data = {}, status } = res
@@ -68,7 +61,10 @@ export const request = (options = {}, config = {}, context) => {
       if (typeof onError === 'function') {
         onError(error, context)
       }
-      throw transformError(error)
+      if (typeof normalizeError === 'function') {
+        throw normalizeError(error)
+      }
+      throw error
     })
 }
 
