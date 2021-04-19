@@ -71,13 +71,16 @@ const defaultConfig = {
       console.warn('token无效或过期')
       return data
     }
+
     // if (data[ERROR_CODE] !== undefined && data[ERROR_CODE] !== 0) {
     //   return Promise.reject({message: data.msg || data.errmsg});
     // }
+
     if (data[STATUS_CODE] === 200) {
       data.statusText = 'OK'
       return data
     }
+
     const error = {
       code: data[ERROR_CODE],
       message: data.message || data.msg || data.errmsg,
@@ -89,10 +92,13 @@ const defaultConfig = {
   onError: (error, context) => {
     const { options, config } = context
     const showErrorMessage = Boolean(options?.config?.throwErrorMessage || config?.throwErrorMessage)
+    const normalizeError = Boolean(options?.config?.normalizeError || config?.normalizeError)
+    let threwError = error
     let messageText = ''
+
     if (typeof error === 'string') {
       messageText = '操作失败，请稍后重试！'
-    } else if (typeof error === 'object' && error !== null) {
+    } else if (typeof error === 'object' && error !== null && error.response) {
       const { response } = error
       if (response && response.status) {
         const errorText = response.statusText
@@ -101,14 +107,32 @@ const defaultConfig = {
         console.error(`axios threw error detail: ${status} ${data.path}`, errorText, error)
       }
       messageText = '操作失败，请稍后重试!'
+      if (typeof normalizeError === 'function') {
+        threwError = normalizeError(error)
+      }
     }
     messageText = messageText || '您的网络发生异常，无法连接服务器'
     if (showErrorMessage) {
-      console.error('voxios threw http error detail: ', messageText, error)
+      // eslint-disable-next-line no-console
+      console.error('voxios threw http error detail: ', threwError, messageText)
       const onThrowError = context.getModule('onThrowError')
-      typeof onThrowError === 'function' && onThrowError(error)
+      typeof onThrowError === 'function' && onThrowError(threwError)
     }
   },
+  normalizeError: (error) => {
+    if (!error || !error.response) {
+      return error
+    }
+    const { response } = error
+    const { data } = response
+    return {
+      code: data[ERROR_CODE],
+      message: data.message,
+      data,
+      origin: response,
+      error: error
+    }
+  }
 }
 
 export default defaultConfig
