@@ -124,11 +124,14 @@ const defaultConfig = {
       return error
     }
     const { response } = error
-    const { data } = response
+    const { data, status } = response
     return {
       code: data[ERROR_CODE],
       message: data.message,
-      data,
+      data: {
+        ...data,
+        httpCode: status
+      },
       origin: response,
       error: error
     }
