@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.23](https://github.com/voxelcloud/vc-ui/compare/v0.0.22...v0.0.23) (2021-04-20)
+
+
+### Bug Fixes
+
+* voxios default config onError normalize error ([5e1759c](https://github.com/voxelcloud/vc-ui/commit/5e1759ce6334fe0e5743d6d3e5a43f8390f86e09))
+
 ### [0.0.22](https://github.com/voxelcloud/vc-ui/compare/v0.0.20...v0.0.22) (2021-04-19)
 
 
