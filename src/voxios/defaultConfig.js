@@ -92,7 +92,7 @@ const defaultConfig = {
   onError: (error, context) => {
     const { options, config } = context
     const showErrorMessage = Boolean(options?.config?.throwErrorMessage || config?.throwErrorMessage)
-    const normalizeError = Boolean(options?.config?.normalizeError || config?.normalizeError)
+    const normalizeError = options?.config?.normalizeError || config?.normalizeError
     let threwError = error
     let messageText = ''
 
