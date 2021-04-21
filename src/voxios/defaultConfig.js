@@ -124,7 +124,10 @@ const defaultConfig = {
       return error
     }
     const { response } = error
-    const { data, status } = response
+    let { data, status } = response
+    if (typeof data === 'string') {
+      data = { data }
+    }
     return {
       code: data[ERROR_CODE],
       message: data.message,
