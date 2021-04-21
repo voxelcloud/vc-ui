@@ -83,11 +83,16 @@ const useTextFieldStyles = makeStyles({
       // color: 'inherit',
       color: 'rgba(0, 0, 0, 0.54)'
     }
+  },
+  weak: {
+    '& .MuiInputBase-input': {
+      color: theme => theme.palette.text.disabled,
+    }
   }
 })
 
 const TextField = React.forwardRef(function TextField({
-  name, type, classes, children, readOnly, disabled, value, extraInputProps, onChange, ...otherProps
+  name, type, classes, children, readOnly, disabled, weak, value, extraInputProps, onChange, ...otherProps
 }, ref) {
 
   const theme = useTheme()
@@ -159,7 +164,7 @@ const TextField = React.forwardRef(function TextField({
         root: customClasses.root,
         ...classes,
       }}
-      className={clsx(readOnly && customClasses.readOnlyRoot)}
+      className={clsx(readOnly && customClasses.readOnlyRoot, weak && customClasses.weak)}
       type={inputType}
       ref={ref}
       select={isSelect}
@@ -182,6 +187,7 @@ TextField.propTypes = {
   classes: t.object,
   children: t.node,
   readOnly: t.bool,
+  weak: t.bool,
   extraInputProps: t.object,
   disabled: t.bool,
   name: t.string,
@@ -191,6 +197,7 @@ TextField.propTypes = {
 
 TextField.defaultProps = {
   type: TEXT_FIELD_TYPE.TEXT,
+  weak: false,
   onChange: () => { },
 }
 

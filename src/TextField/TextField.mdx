@@ -43,6 +43,14 @@ import { makeStyles } from '@material-ui/core/styles'
         </TextField>
         <br/>
         <TextField 
+          label={'weak风格'}
+          type='text' 
+          weak 
+          readOnly
+          value={'暂无数据'}
+        />
+        <br/>
+        <TextField 
           label={readOnly ? '只读模式' : '可写模式'} 
           readOnly = {readOnly} 
           type='text' 
