@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.25](https://github.com/voxelcloud/vc-ui/compare/v0.0.24...v0.0.25) (2021-04-21)
+
+
+### Features
+
+* textField add weak api ([97d8f52](https://github.com/voxelcloud/vc-ui/commit/97d8f52030fecc847d515d267bf8d3778a5e1b42))
+
 ### [0.0.24](https://github.com/voxelcloud/vc-ui/compare/v0.0.23...v0.0.24) (2021-04-20)
 
 
