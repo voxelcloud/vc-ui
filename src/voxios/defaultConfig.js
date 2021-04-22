@@ -42,10 +42,10 @@ const defaultConfig = {
     INVALID_HTTP_CODE.INVALID_TOKEN,
     INVALID_HTTP_CODE.TOKEN_EXPIRED,
   ],
-  isTokenInvalid: (response, invalidToken) => {
+  isTokenInvalid: (response, invalidToken = []) => {
     const { data = {} } = response
     const code = data[ERROR_CODE]
-    if (invalidToken.includes(code)) {
+    if (Array.isArray(invalidToken) && invalidToken.includes(code)) {
       return true
     }
     return false
@@ -70,7 +70,7 @@ const defaultConfig = {
     const getErrorCode = options?.config?.getErrorCode || config?.getErrorCode
     const { data = {} } = res
 
-    if (isTokenInvalid(res, invalidToken)) {
+    if (typeof isTokenInvalid === 'function' && isTokenInvalid(res, invalidToken)) {
       // tokenInvalid钩子
       const onTokenInvalid = context.getModule('onTokenInvalid')
       typeof onTokenInvalid === 'function' && onTokenInvalid(res)
@@ -88,7 +88,7 @@ const defaultConfig = {
     }
 
     const error = {
-      code: getErrorCode(res),
+      code: typeof getErrorCode === 'function' && getErrorCode(res),
       message: data.message || data.msg || data.errmsg,
       data,
       origin: res,
