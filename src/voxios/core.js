@@ -55,8 +55,7 @@ export const request = (options = {}, config = {}, context) => {
       if (typeof onSuccess === 'function') {
         return onSuccess(res, context)
       }
-      const { data } = res
-      return data
+      return res
     }).catch((error) => {
       if (typeof onError === 'function') {
         onError(error, context)
