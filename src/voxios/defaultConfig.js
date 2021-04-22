@@ -19,26 +19,13 @@ import { Session } from '../utils/session'
 //   504: '网关超时。',
 // }
 
-// LACK_PARAM = -400000  缺少参数
-// INVALID_PARAM = -400001  参数不合法
-// EXISTED = -400002   数据已存在
-// NOT_FOUND = 400003   数据不存在
-// ADD_FAILED = -400004  添加数据失败
-// SET_FAILED = -400005  修改数据失败
-// DELETE_FAILED = -400006  删除数据失败
-// HAS_NO_PRIVILEGE = -400007  没有权限
-// INVALID_TOKEN = -400101  token不合法
-// TOKEN_EXPIRED = -400102  token已过期
-
 const INVALID_HTTP_CODE = {
   INVALID_TOKEN: -301001,
   TOKEN_EXPIRED: -301002,
 }
 
-const STATUS_CODE = 'status_code'
+// const STATUS_CODE = 'status'
 const ERROR_CODE = 'error_code'
-
-const isTokenInvalid = (code, invalidToken = []) => invalidToken.includes(code)
 
 const defaultLogout = () => {
   new Session().clearSession()
@@ -46,21 +33,44 @@ const defaultLogout = () => {
 }
 
 const defaultConfig = {
-  invalidToken: [
-    INVALID_HTTP_CODE.INVALID_TOKEN,
-    INVALID_HTTP_CODE.TOKEN_EXPIRED,
-  ],
   addAuthHeader: () => ({ ...new Session().getAuthHeader() }),
   transformHeaders: headers => headers,
   axiosConfig: {
     paramsSerializer: params => qs.stringify(params, { arrayFormat: 'repeat' }),
   },
-  // onBeforeRequest: (context) => { },
+  invalidToken: [
+    INVALID_HTTP_CODE.INVALID_TOKEN,
+    INVALID_HTTP_CODE.TOKEN_EXPIRED,
+  ],
+  isTokenInvalid: (response, invalidToken = []) => {
+    const { data = {} } = response
+    const code = data[ERROR_CODE]
+    if (Array.isArray(invalidToken) && invalidToken.includes(code)) {
+      return true
+    }
+    return false
+  },
+  isSuccess: (response) => {
+    const { status } = response
+    if (status === 200) {
+      return true
+    }
+    return false
+  },
+  getErrorCode: (response) => {
+    const { data = {} } = response
+    return data[ERROR_CODE]
+  },
+  onBeforeRequest: () => { },
   onSuccess: (res, context) => {
     const { options, config } = context
     const invalidToken = options?.config?.invalidToken || config?.invalidToken
+    const isTokenInvalid = options?.config?.isTokenInvalid || config?.isTokenInvalid
+    const isSuccess = options?.config?.isSuccess || config?.isSuccess
+    const getErrorCode = options?.config?.getErrorCode || config?.getErrorCode
     const { data = {} } = res
-    if (isTokenInvalid(data[ERROR_CODE], invalidToken)) {
+
+    if (typeof isTokenInvalid === 'function' && isTokenInvalid(res, invalidToken)) {
       // tokenInvalid钩子
       const onTokenInvalid = context.getModule('onTokenInvalid')
       typeof onTokenInvalid === 'function' && onTokenInvalid(res)
@@ -72,21 +82,18 @@ const defaultConfig = {
       return data
     }
 
-    // if (data[ERROR_CODE] !== undefined && data[ERROR_CODE] !== 0) {
-    //   return Promise.reject({message: data.msg || data.errmsg});
-    // }
-
-    if (data[STATUS_CODE] === 200) {
+    if ((typeof isSuccess === 'function' && isSuccess(res)) || isSuccess === true) {
       data.statusText = 'OK'
       return data
     }
 
     const error = {
-      code: data[ERROR_CODE],
+      code: typeof getErrorCode === 'function' && getErrorCode(res),
       message: data.message || data.msg || data.errmsg,
       data,
-      origin: res
+      origin: res,
     }
+
     return Promise.reject(error)
   },
   onError: (error, context) => {
@@ -124,7 +131,10 @@ const defaultConfig = {
       return error
     }
     const { response } = error
-    const { data, status } = response
+    let { data, status } = response
+    if (typeof data === 'string') {
+      data = { data }
+    }
     return {
       code: data[ERROR_CODE],
       message: data.message,

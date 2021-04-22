@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.26](https://github.com/voxelcloud/vc-ui/compare/v0.0.25...v0.0.26) (2021-04-22)
+
+
+### Features
+
+* voxios config add isSuccess api ([68a9334](https://github.com/voxelcloud/vc-ui/commit/68a93342b7e380c8eb763f9f4a9f2adcbf3cc232))
+
 ### [0.0.25](https://github.com/voxelcloud/vc-ui/compare/v0.0.24...v0.0.25) (2021-04-21)
 
 
