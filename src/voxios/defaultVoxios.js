@@ -5,6 +5,16 @@ Voxios.registerConfig('default', defaultConfig)
 
 const defaultVoxios = new Voxios()
   .useConfig('default')
+  .updateConfig(config => {
+    const isSuccess = (response) => {
+      const { status, data = {} } = response
+      if (status === 200 && data['status_code'] == 200) {
+        return true
+      }
+      return false
+    }
+    return { ...config, isSuccess }
+  })
   .addModule('onThrowError', (err) => {
     console.log('err', err)
     message.open({

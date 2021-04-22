@@ -76,6 +76,18 @@ const config = {
     // axios请求执行前执行的钩子函数
     onBeforeRequest: (context) => { }, // context为Voxios实例
 
+    // 非法token码
+    invalidToken: [ ],
+
+    // 判断token是否有效 
+    isTokenInvalid: (response, invalidToken) => Boolean, // 返回true表示token非法 。response为请求返回的response, invalidToken为config配置
+
+    // 判断接口是否为正确结果
+    isSuccess: (response) => Boolean, // 返回true表示正确结果，否则为错误
+
+    // 获取错误码
+    getErrorCode: (response) => any,
+
     // 请求成功后执行的钩子函数
     onSuccess: (res, context) => {}, // context为Voxios实例
 
