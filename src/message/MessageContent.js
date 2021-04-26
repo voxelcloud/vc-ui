@@ -11,15 +11,15 @@ const useMsgContentStyles = makeStyles({
     position: 'fixed',
     bottom: '0',
     right: '0',
-    width: '528px',
-    height: '56px',
+    minWidth: '528px',
+    width: 'fit-content',
     boxSizing: 'border-box',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
     borderRadius: '4px',
     backgroundColor: 'rgb(69,79,91)',
-    padding: '16px',
+    padding: '10px 16px',
     fontSize: '16px',
     color: theme => theme?.palette?.primary?.contrastText,
     boxShadow: '0 9px 46px rgba(0, 0, 0, 0.14), 0 24px 38px rgba(0, 0, 0, 0.18), 0 11px 15px rgba(0, 0, 0, 0.24)',
@@ -28,9 +28,11 @@ const useMsgContentStyles = makeStyles({
   contain: {
     display: 'flex',
     alignItems: 'center',
+    wordBreak: 'break-word'
   },
   actionBtn: {
     display: 'flex',
+    flexShrink: '0',
     alignItems: 'center',
   },
   clear: {
