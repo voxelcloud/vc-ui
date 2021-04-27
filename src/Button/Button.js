@@ -46,6 +46,13 @@ const useButtonStyles = makeStyles({
         color: theme => theme?.palette?.action.disabled,
       },
     },
+  },
+  superEmphasis: {
+    color: theme => theme?.palette?.text.secondary,
+    '&:hover': {
+      backgroundColor: theme => theme?.palette?.action.hover,
+      color: theme => theme?.palette?.primary.main,
+    }
   }
 })
 
@@ -75,23 +82,35 @@ const useIconButtonStyles = makeStyles({
     '&:disabled': {
       backgroundColor: theme => theme?.palette?.action?.disabledBackground,
     },
+  },
+  superEmphasis: {
+    color: theme => theme?.palette?.text.secondary,
+    '&:hover': {
+      backgroundColor: theme => theme?.palette?.action.hover,
+      color: theme => theme?.palette?.primary.main,
+    }
   }
 })
 
 const Button = React.forwardRef(function Button({
-  type, classes, children, className, emphasis, variant, iconName, iconClassName, ...otherProps
+  type, classes, children, className, emphasis, superEmphasis, variant, iconName, iconClassName, ...otherProps
 }, ref) {
-
+  const { root, ...restClasses } = classes || {}
   const theme = useTheme()
   if (type === 'icon') {
     const customClasses = useIconButtonStyles(theme)
     return (
       <IconButton
         classes={{
-          root: customClasses.root,
-          ...classes
+          root: clsx(customClasses.root, root),
+          ...restClasses
         }}
-        className={clsx(className, variant === 'contained' && customClasses.contained, emphasis && customClasses.highLight)}
+        className={clsx(
+          className,
+          variant === 'contained' && customClasses.contained,
+          emphasis && customClasses.highLight,
+          superEmphasis && customClasses.superEmphasis
+        )}
         ref={ref}
         {...otherProps}
       >
@@ -103,14 +122,18 @@ const Button = React.forwardRef(function Button({
   return (
     <MaButton
       classes={{
-        root: customClasses.root,
+        root: clsx(customClasses.root, root),
         contained: customClasses.contained,
         text: customClasses.text,
         startIcon: customClasses.startIcon,
         endIcon: customClasses.endIcon,
-        ...classes
+        ...restClasses
       }}
-      className={clsx(className, emphasis && customClasses.highLight)}
+      className={clsx(
+        className,
+        emphasis && customClasses.highLight,
+        superEmphasis && customClasses.superEmphasis
+      )}
       ref={ref}
       variant={variant}
       {...otherProps}
@@ -126,12 +149,14 @@ Button.propTypes = {
   children: t.node,
   className: t.string,
   emphasis: t.bool,
+  superEmphasis: t.bool,
   variant: t.oneOf(['contained', 'outlined', 'text']),
   iconName: t.string,
   iconClassName: t.string,
 }
 
 Button.defaultProps = {
+  classes: {},
   type: 'primary',
   color: 'primary',
   variant: 'text'
