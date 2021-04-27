@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.28](https://github.com/voxelcloud/vc-ui/compare/v0.0.27...v0.0.28) (2021-04-27)
+
+
+### Bug Fixes
+
+* button component add superEmphasis api ([8da576a](https://github.com/voxelcloud/vc-ui/commit/8da576a8f74e2dd14ea8ff49286ff55ec4cd2f04))
+
 ### [0.0.27](https://github.com/voxelcloud/vc-ui/compare/v0.0.26...v0.0.27) (2021-04-27)
 
 ### [0.0.26](https://github.com/voxelcloud/vc-ui/compare/v0.0.25...v0.0.26) (2021-04-22)
