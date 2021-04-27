@@ -158,11 +158,13 @@ const TextField = React.forwardRef(function TextField({
 
   const inputType = isSelect || (isPassword && isShowPwd) ? TEXT_FIELD_TYPE.TEXT : type
 
+  const { root, ...restClasses } = classes
+
   return (
     <MaTextField
       classes={{
-        root: customClasses.root,
-        ...classes,
+        root: `${customClasses.root}${root ? ` ${root}` : ''}`,
+        ...restClasses,
       }}
       className={clsx(readOnly && customClasses.readOnlyRoot, weak && customClasses.weak)}
       type={inputType}
@@ -196,6 +198,7 @@ TextField.propTypes = {
 }
 
 TextField.defaultProps = {
+  classes: {},
   type: TEXT_FIELD_TYPE.TEXT,
   weak: false,
   onChange: () => { },
