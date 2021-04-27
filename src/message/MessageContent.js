@@ -12,7 +12,7 @@ const useMsgContentStyles = makeStyles({
     bottom: '0',
     right: '0',
     minWidth: '528px',
-    maxWidth: '700px',
+    maxWidth: '900px',
     width: 'fit-content',
     boxSizing: 'border-box',
     display: 'flex',
