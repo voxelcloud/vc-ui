@@ -68,6 +68,9 @@ const useTextFieldStyles = makeStyles({
     },
   },
   readOnlyRoot: {
+    '& .MuiSelect-select': {
+      cursor: 'default',
+    },
     '& .MuiInputBase-root': {
       '&.MuiInput-underline:after': {
         opacity: 0
