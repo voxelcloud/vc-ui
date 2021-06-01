@@ -10,14 +10,14 @@ const useControlLabelStyles = makeStyles({
     margin: '0',
   },
   label: {
-    marginLeft: '18px',
+    marginLeft: '1.125rem',
   }
 })
 
 const useCheckboxStyles = makeStyles({
   root: {
-    width:' 18px',
-    height: '18px',
+    width: '1.125rem',
+    height: '1.125rem',
     padding: '0',
     '&:hover': {
       background: 'unset',

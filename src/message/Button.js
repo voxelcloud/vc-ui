@@ -11,15 +11,15 @@ const useButtonStyles = makeStyles({
     outline: 'none',
     background: 'unset',
     border: 'none',
-    height: '36px',
-    minWidth: '88px',
-    padding: '0 16px',
-    borderRadius: '4px',
-    fontSize: '16px',
+    height: '2.25rem',
+    minWidth: '5.5rem',
+    padding: '0 1rem',
+    borderRadius: '0.25rem',
+    fontSize: '1rem',
     cursor: 'pointer',
     color: theme => theme?.palette?.primary?.light,
     '& i': {
-      marginRight: '8px',
+      marginRight: '0.5rem',
     }
   },
 })
