@@ -8,9 +8,10 @@ import clsx from 'clsx'
 
 const useButtonStyles = makeStyles({
   root: {
-    height: '36px',
-    padding: '0 16px',
-    borderRadius: '4px',
+    height: '2.25rem',
+    padding: '0 1rem',
+    borderRadius: '0.25rem',
+    minWidth: '4rem',
     '&:hover': {
       backgroundColor: theme => theme?.palette?.action.hover,
     }
@@ -58,13 +59,13 @@ const useButtonStyles = makeStyles({
 
 const useIconButtonStyles = makeStyles({
   root: {
-    width: '40px',
-    height: '40px',
+    width: '2.5rem',
+    height: '2.5rem',
     '&:hover': {
       color: theme => theme?.palette?.primary.main,
     },
     '& .iconfont': {
-      fontSize: '24px',
+      fontSize: '1.5rem',
     }
   },
   contained: {

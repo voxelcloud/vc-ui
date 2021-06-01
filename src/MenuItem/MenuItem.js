@@ -6,7 +6,7 @@ import t from 'prop-types'
 const useStyles = makeStyles({
   menuItemRoot: {
     color: 'rgba(0, 0, 0, 0.64)',
-    fontSize: '14px',
+    fontSize: '0.875rem',
   },
 })
 

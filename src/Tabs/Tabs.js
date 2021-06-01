@@ -12,15 +12,15 @@ const useTabsStyles = makeStyles(() => ({
     overflow: 'hidden',
     position: 'relative',
     backgroundColor: 'rgba(0, 0, 0, .08)',
-    borderRadius: '18px',
+    borderRadius: '1.125rem',
   }
 }))
 const useIndicatorStyle = makeStyles(theme => ({
   root: {
     position: 'absolute',
     top: 0,
-    height: '36px',
-    borderRadius: '18px',
+    height: '2.25rem',
+    borderRadius: '1.125rem',
     transition: 'all 300ms cubic-bezier(0.7, 0, 0, .8)',
     backgroundColor: theme.palette.primary.main,
     zIndex: '0',
