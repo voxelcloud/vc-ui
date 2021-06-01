@@ -16,13 +16,13 @@ export const TEXT_FIELD_TYPE = {
 
 const useTextFieldStyles = makeStyles({
   root: {
-    height: '68px',
-    minWidth: '100px',
+    height: '4.25rem',
+    minWidth: '6.25rem',
     '& .MuiInputLabel-root': {
-      fontSize: '14px',
-      lineHeight: '20px',
+      fontSize: '0.875rem',
+      lineHeight: '1.25rem',
       '&.MuiFormLabel-filled, &.Mui-focused': {
-        lineHeight: '18px',
+        lineHeight: '1.125rem',
       },
       '& .MuiInputLabel-asterisk': {
         color: theme => theme.palette.error.main,
@@ -33,8 +33,8 @@ const useTextFieldStyles = makeStyles({
         borderColor: 'rgba(0, 0, 0, 0.42)',
       },
       '& .MuiInputBase-input': {
-        fontSize: '14px',
-        lineHeight: '20px',
+        fontSize: '0.875rem',
+        lineHeight: '1.25rem',
       },
       '& .input-clear': {
         display: 'none',
@@ -46,7 +46,7 @@ const useTextFieldStyles = makeStyles({
         '& .MuiIconButton-root': {
           padding: '0',
           '& .iconfont': {
-            fontSize: '24px',
+            fontSize: '1.5rem',
           },
           '&:hover': {
             background: 'unset',

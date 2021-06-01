@@ -8,7 +8,7 @@ const useStyles = makeStyles({
   vcRoot: {
     display: 'inline-flex',
     '& .MuiInput-underline:hover:not(.Mui-disabled):before': {
-      borderBottom: '2px solid rgba(0, 0, 0, 0.54)'
+      borderBottom: '0.125rem solid rgba(0, 0, 0, 0.54)'
     }
   },
   select: {

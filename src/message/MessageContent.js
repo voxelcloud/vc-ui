@@ -11,26 +11,26 @@ const useMsgContentStyles = makeStyles({
     position: 'fixed',
     bottom: '0',
     right: '0',
-    minWidth: '528px',
-    maxWidth: '900px',
+    minWidth: '33rem',
+    maxWidth: '56.25rem',
     width: 'fit-content',
     boxSizing: 'border-box',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    borderRadius: '4px',
+    borderRadius: '0.25rem',
     backgroundColor: 'rgb(69,79,91)',
-    padding: '10px 16px',
-    fontSize: '16px',
+    padding: '0.625rem 1rem',
+    fontSize: '1rem',
     lineHeight: '1.5em',
     color: theme => theme?.palette?.primary?.contrastText,
-    boxShadow: '0 9px 46px rgba(0, 0, 0, 0.14), 0 24px 38px rgba(0, 0, 0, 0.18), 0 11px 15px rgba(0, 0, 0, 0.24)',
+    boxShadow: '0 0.5625rem 2.875rem rgba(0, 0, 0, 0.14), 0 1.5rem 2.375rem rgba(0, 0, 0, 0.18), 0 0.6875rem 0.9375rem rgba(0, 0, 0, 0.24)',
     zIndex: '999',
   },
   contain: {
     display: 'flex',
     alignItems: 'center',
-    wordBreak: 'break-word'
+    wordBreak: 'break-word',
   },
   actionBtn: {
     display: 'flex',
@@ -44,7 +44,7 @@ const useMsgContentStyles = makeStyles({
     color: theme => theme?.palette?.primary?.light,
   },
   leftIcon: {
-    marginRight: '10px',
+    marginRight: '0.625rem',
   }
 })
 
