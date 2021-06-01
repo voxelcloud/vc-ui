@@ -7,7 +7,7 @@ import { getTheme } from '../theme'
 
 const useIconStyles = makeStyles({
   vcRoot: {
-    fontSize: '24px',
+    fontSize: '1.5rem',
   },
   primary: {
     color: theme => theme?.palette?.primary?.main
