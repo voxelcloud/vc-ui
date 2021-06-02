@@ -23,6 +23,12 @@ const useTextFieldStyles = makeStyles({
     '& label + .MuiInput-formControl': {
       marginTop: '1rem',
     },
+    '& .MuiInputLabel-formControl':{
+      transform: 'translate(0, 1.5rem) scale(1)',
+    },
+    '& .MuiInputLabel-shrink':{
+      transform: 'translate(0, 0.09375rem) scale(0.75)',
+    },
     '& .MuiInputLabel-root': {
       fontSize: '0.875rem',
       lineHeight: '1.25rem',
