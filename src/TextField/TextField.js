@@ -18,6 +18,11 @@ const useTextFieldStyles = makeStyles({
   root: {
     height: '4.25rem',
     minWidth: '6.25rem',
+    marginTop: '1rem',
+    marginBottom: '0.5rem',
+    '& label + .MuiInput-formControl': {
+      marginTop: '1rem',
+    },
     '& .MuiInputLabel-root': {
       fontSize: '0.875rem',
       lineHeight: '1.25rem',
@@ -29,6 +34,7 @@ const useTextFieldStyles = makeStyles({
       }
     },
     '& .MuiInputBase-root': {
+      height: '2rem',
       '&.MuiInput-underline:hover:not(.Mui-disabled):before': {
         borderColor: 'rgba(0, 0, 0, 0.42)',
       },
