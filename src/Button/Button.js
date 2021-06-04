@@ -61,6 +61,7 @@ const useIconButtonStyles = makeStyles({
   root: {
     width: '2.5rem',
     height: '2.5rem',
+    padding: '0.75rem',
     '&:hover': {
       color: theme => theme?.palette?.primary.main,
     },
