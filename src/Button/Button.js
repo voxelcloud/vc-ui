@@ -25,6 +25,11 @@ const useButtonStyles = makeStyles({
   },
   startIcon: {
     display: 'unset',
+    marginLeft: '-0.25rem',
+    marginRight: '0.5rem',
+    '&.MuiButton-iconSizeMedium>*:first-child': {
+      fontSize: '1.25rem',
+    },
   },
   endIcon: {
     display: 'unset',
@@ -61,7 +66,7 @@ const useIconButtonStyles = makeStyles({
   root: {
     width: '2.5rem',
     height: '2.5rem',
-    padding: '0.75rem',
+    padding: '0',
     '&:hover': {
       color: theme => theme?.palette?.primary.main,
     },
