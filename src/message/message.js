@@ -4,7 +4,8 @@ import MessageContent from './MessageContent'
 
 const DefaultDuration = 3 // second
 const transitionName = 'move-down'
-let messageInstance = {}
+let messageInstance
+let messageInstances = {}
 
 function getMessageInstance(key, isSingleton, maxCount, getContainer, callback) {
 
@@ -14,12 +15,12 @@ function getMessageInstance(key, isSingleton, maxCount, getContainer, callback) 
       maxCount,
       getContainer
     }, (instance) => {
-      messageInstance[key] = instance
+      messageInstances[key] = instance
       callback(instance)
     })
   } else {
-    if (messageInstance[key]) {
-      callback(messageInstance[key])
+    if (messageInstance) {
+      callback(messageInstance)
       return
     }
     Notification.newInstance({
@@ -27,11 +28,11 @@ function getMessageInstance(key, isSingleton, maxCount, getContainer, callback) 
       maxCount,
       getContainer
     }, (instance) => {
-      if (messageInstance[key]) {
-        callback(messageInstance[key])
+      if (messageInstance) {
+        callback(messageInstance)
         return
       }
-      messageInstance[key] = instance
+      messageInstance = instance
       callback(instance)
     })
   }
@@ -44,7 +45,11 @@ function notice({
   const key = Date.now()
 
   const removeNotice = () => {
-    messageInstance[key].removeNotice(key)
+    if (isSingleton) {
+      messageInstance.removeNotice(key)
+    } else {
+      messageInstances[key].removeNotice(key)
+    }
   }
 
   const closeNotice = (e) => {
@@ -75,10 +80,15 @@ function notice({
 }
 
 function destroy() {
-  for (let key in messageInstance) {
-    messageInstance[key].destroy()
+  for (let key in messageInstances) {
+    messageInstances[key].destroy()
   }
-  messageInstance = {}
+  messageInstances = {}
+
+  if (messageInstance) {
+    messageInstance.destroy()
+    messageInstance = null
+  }
 }
 
 const message = {
